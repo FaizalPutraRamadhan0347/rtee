@@ -78,4 +78,9 @@ class backController extends Controller
         return redirect()->back();
     }
 
+
+    public function user()
+    {
+        return view('back.controlUser');
+    }
 }
