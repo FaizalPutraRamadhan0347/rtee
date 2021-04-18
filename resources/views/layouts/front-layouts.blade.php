@@ -27,7 +27,7 @@
           <li><a class="nav-link" href="/daftarprogram">Donasi</a></li>          
           <li><a class="nav-link" href="/konfirmasi">Konfirmasi Pendonasian</a></li>
           @if (Auth::check())
-            @if (Auth::user()->role == 1)
+            @if (Auth::user()->role == 'admin')
               <li><a href="/admin/dashboard" class="btn-admin nav-link">Kelola Admin</a></li> 
             @else
               <li><a href="/middle" class="btn-dashboard nav-link">Dashboard</a></li>
