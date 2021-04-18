@@ -184,6 +184,13 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/users" aria-expanded="false">
+                                <i class="mdi mdi-av-timer"></i>
+                                <span class="hide-menu">Kelola Pengguna</span>
+                            </a>
+                        </li>
+
                         <div class="devider"></div>
                     </ul>
                 </nav>

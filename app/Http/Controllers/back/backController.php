@@ -78,4 +78,10 @@ class backController extends Controller
         return redirect()->back();
     }
 
+    public function kelolaUser()
+    {
+        $users = User::all();
+        return view('back.users' , ['users' => $users]);
+    }
+
 }
