@@ -38,7 +38,7 @@
                 {{-- End of Select Filter --}}
             </div>
             <div class="col-2">
-                <button type="button" class="float-right mt-4 mr-4 btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Tambah Pengguna</button>
+                <button type="button" class="float-right mt-4 mr-4 btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Tambah</button>
                 
 
 
@@ -52,7 +52,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                     </div>
                     <div class="modal-body">
-                        <form action="/admin/categories/create" method="POST">
+                        <form action="/admin/users/create" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="nama" class="control-label mt-4">Nama</label>
@@ -62,16 +62,22 @@
                                 <input type="number" name="no_hp" class="form-control" id="recipient-name1">
 
                                 <label for="recipient-name" class="control-label mt-4">Email</label>
-                                <input type="email" name="email" class="form-control" id="recipient-name1">
+                                {{-- <input type="email" name="email" class="form-control"> --}}
+                                
+                                <div class="{{'form-group required'.$errors->first('email',' has-error')}}">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <span class="invalid-feedback" role="alert">
+                                        <strong><div class="text-danger">{{$errors->has('email') ? $errors->first('email') : ''}}</div></strong>
+                                </span>
 
                                 <label for="recipient-name" class="control-label mt-4">Password</label>
                                 <input type="password" name="password" class="form-control" id="recipient-name1">
 
                                 <label for="recipient-name" class="control-label mt-2">Confirm Password</label>
-                                <input type="password" name="password" class="form-control" id="recipient-name1">
+                                <input type="password" name="password_confirmation" class="form-control" id="recipient-name1">
 
                                 <label for="recipient-name" class="control-label mt-2">Role</label>
-                                <select class="custom-select">
+                                <select class="custom-select" name="role">
                                     <option selected disabled> </option>
                                     <option value="user">User</option>
                                     <option value="partner">Partner</option>
@@ -132,8 +138,10 @@
                         <td>{{ $user->status }}</td>
                         <td style="color: white">
                             <a class="btn btn-secondary">Lihat</a>
-                            <a class="btn btn-secondary">Ubah</a>
-                            <a class="btn btn-danger">Hapus</a>
+                            <a class="btn btn-secondary" href="users/edit/{{ $user->id }}">Ubah</a>
+                            <a class="btn btn-danger" href="deleteUser/{{ $user->id }}">Hapus</a>
+
+                            {{-- Membuat Kondisi Button sesuai status --}}
                             <a class="btn btn-primary">Enable</a>
                         </td>
                     </tr>

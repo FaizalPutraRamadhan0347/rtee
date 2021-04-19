@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\back;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 use App\Http\Controllers\Controller;
 use App\DonationConfirmation;
 use App\Program;
@@ -82,6 +84,51 @@ class backController extends Controller
     {
         $users = User::all();
         return view('back.users' , ['users' => $users]);
+    }
+
+    public function createUser(Request $request)
+    {
+        $user = new \App\User;
+        $user->role = $request->role;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->no_hp = $request->no_hp;
+        $user->status = 'active';
+        $user->password = bcrypt($request->password);
+        $user->remember_token = str::random(60);
+        $user->save();
+
+
+        // Insert ke table siswa
+        $request->request->add(['user_id' => $user->id]);
+        // $siswa = \App\User::create($request->all()) ;
+        return redirect('admin/users');
+        
+
+        // User::create($request->all());
+        // return redirect()->back();
+    }
+
+    public function hapusUser($id)
+    {
+        // $user = User::find($id);
+        User::destroy($id);
+        // $user->delete();
+        return redirect()->back();
+    }
+
+    public function editUser($id)
+    {
+        $user = \App\User::find($id);
+        // dd($user);
+        return view('back.editUser', ['user' => $user]);
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::findorfail($id);
+        $user->update($request->all());
+        return redirect('')->back();
     }
 
 }
