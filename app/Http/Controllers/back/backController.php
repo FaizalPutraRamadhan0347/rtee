@@ -126,9 +126,9 @@ class backController extends Controller
 
     public function updateUser(Request $request, $id)
     {
-        $user = User::findorfail($id);
+        $user = \App\User::find($id);
         $user->update($request->all());
-        return redirect('')->back();
+        return redirect()->back();
     }
 
 }

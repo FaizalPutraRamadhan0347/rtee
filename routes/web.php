@@ -59,7 +59,7 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function (
             Route::post('/users/create', 'back\\backController@createUser');
             Route::get('/deleteUser/{id}', 'back\\backController@hapusUser');
             Route::get('/users/edit/{id}', 'back\\backController@editUser');
-            Route::post('/update/{id}', 'back\\backController@updateUser');
+            Route::get('/users/{id}/update','back\\backController@updateUser' );
         });   
     });
 });
