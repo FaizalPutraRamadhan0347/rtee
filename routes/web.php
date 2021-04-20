@@ -11,6 +11,7 @@
 */
 
 Route::get('/', 'front\\frontController@index');
+Route::get('/testemail', 'front\\frontController@testemail');
 
 // ========== middle =====
     
