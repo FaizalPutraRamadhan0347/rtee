@@ -99,6 +99,9 @@ class backController extends Controller
     		// mengambil data dari table pegawai sesuai pencarian data
 		$users = DB::table('users')
 		->where('name','like',"%".$cari."%")
+        ->orWhere('email', 'like', '%'.$cari.'%')
+        ->orWhere('no_hp', 'like', '%'.$cari.'%')
+        ->orWhere('status', 'like', '%'.$cari.'%')
 		->paginate(5);
  
     		// mengirim data pegawai ke view index

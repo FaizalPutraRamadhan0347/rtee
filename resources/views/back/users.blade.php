@@ -146,7 +146,7 @@
                         <td>{{ $user->status }}</td>
                         <td style="color: white">
                             <a class="btn btn-secondary">Lihat</a>
-                            <a class="btn btn-secondary" href="edit/{{ $user->id }}">Ubah</a>
+                            <a class="btn btn-secondary" href="/admin/users/edit/{{ $user->id }}/">Ubah</a>
                             <a class="btn btn-danger" href="deleteUser/{{ $user->id }}">Hapus</a>
 
                             {{-- Membuat Kondisi Button sesuai status --}}
@@ -177,6 +177,7 @@
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li> --}}
+          {{ $users->links() }}
           
         </ul>
       </nav>
