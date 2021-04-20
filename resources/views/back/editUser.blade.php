@@ -16,7 +16,7 @@
 
 <div class="modal-body">
     <h1>Edit User</h1>
-    <form action="users/{{ $user->id}}/update" method="POST" enctype="multipart/form-data">
+    <form action="/admin/users/{{ $user->id}}/update" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group">
             <label for="nama" class="control-label mt-4">Nama</label>

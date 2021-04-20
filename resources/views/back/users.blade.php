@@ -18,12 +18,20 @@
         <div class="row">
             <div class="col-6">
                 {{-- Search Box --}}
-                <div class="float-left mt-4 ml-4 input-group col-6">
-                    <input type="text" class="form-control" placeholder="" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                <form action="/admin/users/search" method="GET">
+                    <div class="float-left mt-4 ml-4 input-group col-6">
+                        <input type="text" name="cari" class="form-control" placeholder="Search..." value="{{ old('cari') }}" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" value="CARI" type="submit" id="button-addon2">Search</button>
+                        </div>
                     </div>
-                  </div>
+                </form>
+
+                  {{-- <p>Cari Data Pegawai :</p>
+<form action="/pegawai/cari" method="GET">
+	<input type="text" name="cari" placeholder="Cari Pegawai .." value="{{ old('cari') }}">
+	<input type="submit" >
+</form> --}}
                 {{-- End of search box --}}
             </div>
             <div class="col-4 float-left">
@@ -138,7 +146,7 @@
                         <td>{{ $user->status }}</td>
                         <td style="color: white">
                             <a class="btn btn-secondary">Lihat</a>
-                            <a class="btn btn-secondary" href="users/edit/{{ $user->id }}">Ubah</a>
+                            <a class="btn btn-secondary" href="edit/{{ $user->id }}">Ubah</a>
                             <a class="btn btn-danger" href="deleteUser/{{ $user->id }}">Hapus</a>
 
                             {{-- Membuat Kondisi Button sesuai status --}}
@@ -150,12 +158,13 @@
                     
                 </tbody>
             </table>
+            
         </div>
     </div>
 
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-          <li class="page-item">
+          {{-- <li class="page-item">
             <a class="page-link" href="#" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
             </a>
@@ -167,9 +176,11 @@
             <a class="page-link" href="#" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>
-          </li>
+          </li> --}}
+          
         </ul>
       </nav>
+    
 
 
 @endsection

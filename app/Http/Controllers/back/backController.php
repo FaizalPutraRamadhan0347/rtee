@@ -4,7 +4,7 @@ namespace App\Http\Controllers\back;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DonationConfirmation;
 use App\Program;
@@ -82,9 +82,29 @@ class backController extends Controller
 
     public function kelolaUser()
     {
-        $users = User::all();
+        // mengambil data dari table users
+        $users = DB::table('users')->paginate(10);
+
+        // mengirim data users ke view users
+        // $users = User::all();
         return view('back.users' , ['users' => $users]);
     }
+
+    public function cari(Request $request)
+	{
+		// menangkap data pencarian
+		// $cari = $request->cari;
+        $cari = $request->get('cari');
+ 
+    		// mengambil data dari table pegawai sesuai pencarian data
+		$users = DB::table('users')
+		->where('name','like',"%".$cari."%")
+		->paginate(5);
+ 
+    		// mengirim data pegawai ke view index
+		return view('back.users',['users' => $users]);
+ 
+	}
 
     public function createUser(Request $request)
     {
@@ -128,7 +148,27 @@ class backController extends Controller
     {
         $user = \App\User::find($id);
         $user->update($request->all());
-        return redirect()->back();
+        return redirect('/admin/users');
     }
+
+    // public function search(Request $request)
+    // {
+    //     $search =  $request->input('q');
+    //     if($search!=""){
+    //         $users = User::where(function ($query) use ($search){
+    //             $query->where('name', 'like', '%'.$search.'%')
+    //                 ->orWhere('email', 'like', '%'.$search.'%');
+    //         })
+    //         ->paginate(2);
+    //         $users->appends(['q' => $search]);
+    //     }
+    //     else{
+    //         $users = User::paginate(2);
+    //     }
+    //     return View('back.user')->with('data',$users);
+    //     //
+    // }
+
+
 
 }
