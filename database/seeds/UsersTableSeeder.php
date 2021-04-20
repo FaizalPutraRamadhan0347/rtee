@@ -12,10 +12,11 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+        [
             'name' => 'Admin',
             'no_hp' => '0812321231',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('admin'),
             'role' => 'admin',
             
         ],
@@ -24,18 +25,17 @@ class UsersTableSeeder extends Seeder
             'name' => 'Partner',
             'no_hp' => '0812321321',
             'email' => 'partner@gmail.com',
-            'password' => bcrypt('bisa2'),
+            'password' => bcrypt('partner'),
             'role' => 'partner',
         ], 
           
         [
             'name' => 'user',
             'no_hp' => '0811122233',
-            'email' => 'usermail@gmail.com',
-            'password' => bcrypt('test1234'),
-            'role' => 'partner',
+            'email' => 'user@gmail.com',
+            'password' => bcrypt('user'),
+            'role' => 'user',
         ],  
-        
-    );
+        ]);
     }
 }
