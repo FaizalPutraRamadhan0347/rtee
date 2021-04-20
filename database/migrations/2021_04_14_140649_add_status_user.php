@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDevelopmentsTable extends Migration
+class AddStatusUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateDevelopmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('developments', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('program_id');
-            $table->string('title', 120);
-            $table->text('description');
-            $table->timestamps();
+        Schema::table('users', function ($table) {
+            $table->enum('status', ['active', 'pending', 'suspend', 'reject']);
         });
+    
     }
 
     /**
@@ -29,6 +26,8 @@ class CreateDevelopmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('developments');
+        Schema::table('users', function($table) {
+            $table->dropColumn('status');
+        });
     }
 }
