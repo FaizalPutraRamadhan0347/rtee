@@ -150,7 +150,16 @@ class backController extends Controller
     public function updateUser(Request $request, $id)
     {
         $user = \App\User::find($id);
-        $user->update($request->all());
+        // $user = new \App\User;
+        $user->role = $request->role;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->no_hp = $request->no_hp;
+        $user->status = 'active';
+        // $user->password = bcrypt($request->password);
+        $user->remember_token = str::random(60);
+        $user->save();
+        // $user->update($request->all());
         return redirect('/admin/users');
     }
 
