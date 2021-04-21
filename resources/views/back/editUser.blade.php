@@ -29,11 +29,11 @@
             <input type="email" name="email" class="form-control"  value="{{ $user->email }}">
             
 
-            {{-- <label for="recipient-name" class="control-label mt-4">Password</label>
+            <label for="recipient-name" class="control-label mt-4">Password</label>
             <input type="password" name="password" class="form-control" id="recipient-name1"  value="{{ $user->password }}">
 
             <label for="recipient-name" class="control-label mt-2">Confirm Password</label>
-            <input type="password" name="password_confirmation" class="form-control" id="recipient-name1" > --}}
+            <input type="password" name="password_confirmation" class="form-control" id="recipient-name1"  value="{{ $user->password }}">
 
             <label for="recipient-name" class="control-label mt-2">Role</label>
             <select class="custom-select" name="role"  value="{{ $user->role }}">
@@ -45,7 +45,7 @@
         </div>  
 </div>
 <div class="modal-footer">
-    <a class="btn btn-default" data-dismiss="modal" href="/admin/users">Tutup</a>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
     <button type="submit" class="btn btn-primary">Update</button>
 </div>
 </form>
