@@ -61,6 +61,7 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function (
             Route::get('/users/edit/{id}', 'back\\backController@editUser');
             Route::post('/users/{id}/update','back\\backController@updateUser' );
             Route::get('/users/search','back\\backController@cari');
+            Route::get('/users/filter','back\\backController@filter');
         });   
     });
 });

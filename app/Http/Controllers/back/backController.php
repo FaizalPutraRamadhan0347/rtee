@@ -109,6 +109,20 @@ class backController extends Controller
  
 	}
 
+    public function filter(Request $request)    
+    {
+        $filter = $request->get('filter');
+        
+
+        $users = DB::table('users')
+        ->where('role', 'like', "%".$filter."%")
+        ->orWhere('status', 'like', "%".$filter."%")
+        ->paginate(5);
+
+        return view('back.users',['users' => $users]);
+    }
+
+
     public function createUser(Request $request)
     {
         $user = new \App\User;
@@ -117,6 +131,7 @@ class backController extends Controller
         $user->email = $request->email;
         $user->no_hp = $request->no_hp;
         $user->status = 'active';
+        // $user->status = $request->status;
         $user->password = bcrypt($request->password);
         $user->remember_token = str::random(60);
         $user->save();
@@ -149,7 +164,17 @@ class backController extends Controller
 
     public function updateUser(Request $request, $id)
     {
+        // $user = new \App\User;
         $user = \App\User::find($id);
+        $user->role = $request->role;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->no_hp = $request->no_hp;
+        // $user->status = 'active';
+        // $user->status = $request->status;
+        // $user->password = bcrypt($request->password);
+        // $user->remember_token = str::random(60);
+        $user->save();
         $user->update($request->all());
         return redirect('/admin/users');
     }

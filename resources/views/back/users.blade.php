@@ -36,13 +36,20 @@
             </div>
             <div class="col-4 float-left">
                 {{-- Select Filter --}}
-                <select class="col-3 custom-select float-left mt-4">
-                    <option selected disabled>Show By</option>
-                    <option value="1">User</option>
-                    <option value="2">Partner</option>
-                    <option value="3">All Pending Partner</option>
-                    <option value="3">All Active User</option>
-                </select>
+                <form action="/admin/users/filter" method="GET">
+                    <div class="float-left mt-4 ml-4 input-group ">
+                        <select name="filter" class="col-3 custom-select float-left" name="filter_status" id="filter_status">
+                            <option selected disabled>Show By</option>
+                            <option value="user">User</option>
+                            <option value="partner">Partner</option>
+                            <option value="pending">All Pending Partner</option>
+                            <option value="active">All Active User</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" value="Filter" type="submit" id="button-addon2">Filter</button>
+                        </div>
+                    </div>
+                </form>
                 {{-- End of Select Filter --}}
             </div>
             <div class="col-2">
@@ -91,6 +98,14 @@
                                     <option value="partner">Partner</option>
                                     <option value="admin">Admin</option>
                                 </select>
+                                
+                                {{-- <label for="recipient-name" class="control-label mt-2">Status</label>
+                                <select class="custom-select" name="status">
+                                    <option selected disabled> </option>
+                                    <option value="pending">Pending</option>
+                                    <option value="active">Active</option>
+                                </select> --}}
+                                
                             </div>  
                     </div>
                     <div class="modal-footer">
