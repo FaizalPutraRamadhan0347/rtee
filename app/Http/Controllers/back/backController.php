@@ -149,7 +149,11 @@ class backController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->no_hp = $request->no_hp;
-        $user->status = 'active';
+        if($request->role == 'user' || 'admin'){
+            $user->status = 'active';
+        } else {
+            $user->status = 'pending';
+        }
         // $user->status = $request->status;
         $user->password = bcrypt($request->password);
         $user->remember_token = str::random(60);
@@ -191,10 +195,10 @@ class backController extends Controller
         $user->no_hp = $request->no_hp;
         // $user->status = 'active';
         // $user->status = $request->status;
-        // $user->password = bcrypt($request->password);
+        $user->password = bcrypt($request->password);
         // $user->remember_token = str::random(60);
         $user->save();
-        $user->update($request->all());
+        // $user->update($request->all());
         return redirect('/admin/users');
     }
 

@@ -30,10 +30,10 @@
             
 
 
-            {{-- <label for="recipient-name" class="control-label mt-4">Password</label>
-            <input type="password" name="password" class="form-control" id="recipient-name1"  value="{{ $user->password }}">
+            <label for="recipient-name" class="control-label mt-4">Password</label>
+            <input type="password" name="password" class="form-control" id="recipient-name1"  value="">
 
-            <label for="recipient-name" class="control-label mt-2">Confirm Password</label>
+            {{-- <label for="recipient-name" class="control-label mt-2">Confirm Password</label>
             <input type="password" name="password_confirmation" class="form-control" id="recipient-name1"  value="{{ $user->password }}"> --}}
 
             <label for="recipient-name" class="control-label mt-2">Role</label>

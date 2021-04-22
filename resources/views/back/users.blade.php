@@ -124,12 +124,6 @@
                                     @endif
                                 </div>
                                 
-                                {{-- <label for="recipient-name" class="control-label mt-2">Status</label>
-                                <select class="custom-select" name="status">
-                                    <option selected disabled> </option>
-                                    <option value="pending">Pending</option>
-                                    <option value="active">Active</option>
-                                </select> --}}
                                 
                             </div>  
                     </div>
@@ -165,17 +159,6 @@
                     @php
                         $i = 1;
                     @endphp
-                    {{-- @foreach ($categories as $category)
-                    <tr>
-                        <td>{{$i++}}</td>
-                        <td>{{$category->category_name}}</td>
-                        <td>
-                            <a class="btn btn-danger" href="/admin/delete/{{$category->id}}">Hapus</a>
-                        </td>
-                    </tr>
-                    @endforeach --}}
-
-                    {{-- Td sementara --}}
                     
                     @foreach ($users as $user)
                     <tr>
@@ -187,7 +170,7 @@
                         <td style="color: white">
                             <a class="btn btn-secondary">Lihat</a>
                             <a class="btn btn-secondary" href="/admin/users/edit/{{ $user->id }}/">Ubah</a>
-                            <a class="btn btn-danger" href="deleteUser/{{ $user->id }}">Hapus</a>
+                            <a class="btn btn-danger" href="/admin/users/deleteUser/{{ $user->id }}">Hapus</a>
 
                             {{-- Membuat Kondisi Button sesuai status --}}
                             <a class="btn btn-primary">Enable</a>
