@@ -131,13 +131,15 @@ class backController extends Controller
             'no_hp' => 'required|min:2|max:15',
             'password' => 'required|min:6|max:255',
             'cpassword' => 'required|max:255|same:password',
+            'role' => 'required',
         ], [
-            'name.required' => 'masukan nama anda', 
-            'email.required' => 'masukan email anda', 
-            'no_hp.required' => 'masukan nomor telepon atau nomor hp anda',
-            'password.required' => 'masukan password anda minimal 6 karakter',
-            'cpassword.required' => 'konfirmasi password anda',
-            'cpassword.same' => 'tidak cocok dengan password'
+            'name.required' => 'masukan nama', 
+            'email.required' => 'masukan email', 
+            'no_hp.required' => 'masukan nomor telepon atau nomor hp',
+            'password.required' => 'masukan password minimal 6 karakter',
+            'cpassword.required' => 'konfirmasi password',
+            'cpassword.same' => 'tidak cocok dengan password',
+            'role.required' => 'pilihlah role pengguna',
 
 
         ]);

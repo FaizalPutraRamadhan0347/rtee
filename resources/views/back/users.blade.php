@@ -73,7 +73,7 @@
 
                                 <div class="form-group{{ $errors->has('name') ? 'has-error' : '' }}">
                                     <label for="nama" class="control-label mt-4">Nama</label>
-                                    <input type="text" name="name" class="form-control" id="recipient-name1" value="{{ old('name') }}">
+                                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="recipient-name1" value="{{ old('name') }}">
                                     @if ($errors->has('name'))
                                         <span class="help-block text-danger"> {{ $errors->first('name') }}</span>
                                     @endif
@@ -81,7 +81,7 @@
 
                                 <div class="form-group{{ $errors->has('no_hp') ? 'has-error' : '' }}">
                                     <label for="recipient-name" class="control-label mt-4">No HP/Telp</label>
-                                    <input type="number" name="no_hp" class="form-control" value="{{ old('no_hp') }}" id="recipient-name1">
+                                    <input type="number" name="no_hp" class="form-control  @error('no_hp') is-invalid @enderror" value="{{ old('no_hp') }}" id="recipient-name1">
                                     @if ($errors->has('no_hp'))
                                         <span class="help-block text-danger"> {{ $errors->first('no_hp') }}</span>
                                     @endif
@@ -91,33 +91,38 @@
                                     {{-- <input type="email" name="email" class="form-control"> --}}
                                     <div class="{{'form-group required'.$errors->first('email',' has-error')}}">
                                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
-                                    <span class="invalid-feedback" role="alert">
-                                        <div class="text-danger">{{$errors->has('email') ? $errors->first('email') : ''}}</div>
-                                    </span>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block text-danger"> {{ $errors->first('email') }}</span>
+                                    @endif
                                 </div>
                                 
                                 <div class="form-group{{ $errors->has('password') ? 'has-error' : '' }}">
-                                    <label for="recipient-name" class="control-label mt-4">Password</label>
-                                    <input type="password" name="password" class="form-control" id="recipient-name1">
+                                    <label for="recipient-name" class="control-label mt-2">Password</label>
+                                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="recipient-name1">
                                     @if ($errors->has('password'))
                                         <span class="help-block text-danger"> {{ $errors->first('password') }}</span>
                                     @endif
                                 </div>
                                  <div class="form-group{{ $errors->has('cpassword') ? 'has-error' : '' }}">
                                      <label for="recipient-name" class="control-label mt-2">Confirm Password</label>
-                                     <input type="password" name="cpassword" class="form-control" id="recipient-name1">
+                                     <input type="password" name="cpassword" class="form-control @error('cpassword') is-invalid @enderror" id="recipient-name1">
                                      @if ($errors->has('cpassword'))
                                         <span class="help-block text-danger"> {{ $errors->first('cpassword') }}</span>
                                     @endif
                                  </div>
-
-                                <label for="recipient-name" class="control-label mt-2">Role</label>
-                                <select class="custom-select" name="role">
-                                    <option selected disabled> </option>
-                                    <option value="user">User</option>
-                                    <option value="partner">Partner</option>
-                                    <option value="admin">Admin</option>
-                                </select>
+                                 
+                                <div class="form-group{{ $errors->has('role') ? 'has-error' : '' }}"> 
+                                    <label for="recipient-name" class="control-label mt-2">Role</label>
+                                    <select class="custom-select @error('role') is-invalid @enderror" name="role">
+                                        <option selected disabled> </option>
+                                        <option value="user">User</option>
+                                        <option value="partner">Partner</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                    @if ($errors->has('role'))
+                                        <span class="help-block text-danger"> {{ $errors->first('role') }}</span>
+                                    @endif
+                                </div>
                                 
                                 {{-- <label for="recipient-name" class="control-label mt-2">Status</label>
                                 <select class="custom-select" name="status">
