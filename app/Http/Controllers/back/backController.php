@@ -125,6 +125,23 @@ class backController extends Controller
 
     public function createUser(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|min:2|max:120',
+            'email' => 'required|unique:users|max:120',
+            'no_hp' => 'required|min:2|max:15',
+            'password' => 'required|min:6|max:255',
+            'cpassword' => 'required|max:255|same:password',
+        ], [
+            'name.required' => 'masukan nama anda', 
+            'email.required' => 'masukan email anda', 
+            'no_hp.required' => 'masukan nomor telepon atau nomor hp anda',
+            'password.required' => 'masukan password anda minimal 6 karakter',
+            'cpassword.required' => 'konfirmasi password anda',
+            'cpassword.same' => 'tidak cocok dengan password'
+
+
+        ]);
+        
         $user = new \App\User;
         $user->role = $request->role;
         $user->name = $request->name;

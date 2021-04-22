@@ -70,26 +70,46 @@
                         <form action="/admin/users/create" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="nama" class="control-label mt-4">Nama</label>
-                                <input type="text" name="name" class="form-control" id="recipient-name1">
 
-                                <label for="recipient-name" class="control-label mt-4">No HP/Telp</label>
-                                <input type="number" name="no_hp" class="form-control" id="recipient-name1">
+                                <div class="form-group{{ $errors->has('name') ? 'has-error' : '' }}">
+                                    <label for="nama" class="control-label mt-4">Nama</label>
+                                    <input type="text" name="name" class="form-control" id="recipient-name1" value="{{ old('name') }}">
+                                    @if ($errors->has('name'))
+                                        <span class="help-block text-danger"> {{ $errors->first('name') }}</span>
+                                    @endif
+                                </div>
 
-                                <label for="recipient-name" class="control-label mt-4">Email</label>
-                                {{-- <input type="email" name="email" class="form-control"> --}}
+                                <div class="form-group{{ $errors->has('no_hp') ? 'has-error' : '' }}">
+                                    <label for="recipient-name" class="control-label mt-4">No HP/Telp</label>
+                                    <input type="number" name="no_hp" class="form-control" value="{{ old('no_hp') }}" id="recipient-name1">
+                                    @if ($errors->has('no_hp'))
+                                        <span class="help-block text-danger"> {{ $errors->first('no_hp') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="control-label mt-4">Email</label>
+                                    {{-- <input type="email" name="email" class="form-control"> --}}
+                                    <div class="{{'form-group required'.$errors->first('email',' has-error')}}">
+                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
+                                    <span class="invalid-feedback" role="alert">
+                                        <div class="text-danger">{{$errors->has('email') ? $errors->first('email') : ''}}</div>
+                                    </span>
+                                </div>
                                 
-                                <div class="{{'form-group required'.$errors->first('email',' has-error')}}">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                <span class="invalid-feedback" role="alert">
-                                        <strong><div class="text-danger">{{$errors->has('email') ? $errors->first('email') : ''}}</div></strong>
-                                </span>
-
-                                <label for="recipient-name" class="control-label mt-4">Password</label>
-                                <input type="password" name="password" class="form-control" id="recipient-name1">
-
-                                <label for="recipient-name" class="control-label mt-2">Confirm Password</label>
-                                <input type="password" name="password_confirmation" class="form-control" id="recipient-name1">
+                                <div class="form-group{{ $errors->has('password') ? 'has-error' : '' }}">
+                                    <label for="recipient-name" class="control-label mt-4">Password</label>
+                                    <input type="password" name="password" class="form-control" id="recipient-name1">
+                                    @if ($errors->has('password'))
+                                        <span class="help-block text-danger"> {{ $errors->first('password') }}</span>
+                                    @endif
+                                </div>
+                                 <div class="form-group{{ $errors->has('cpassword') ? 'has-error' : '' }}">
+                                     <label for="recipient-name" class="control-label mt-2">Confirm Password</label>
+                                     <input type="password" name="cpassword" class="form-control" id="recipient-name1">
+                                     @if ($errors->has('cpassword'))
+                                        <span class="help-block text-danger"> {{ $errors->first('cpassword') }}</span>
+                                    @endif
+                                 </div>
 
                                 <label for="recipient-name" class="control-label mt-2">Role</label>
                                 <select class="custom-select" name="role">
