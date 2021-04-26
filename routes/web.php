@@ -56,9 +56,13 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function (
             Route::get('/delete/{id}', 'back\\backController@destroy');
             Route::get('/detail/{id}', 'back\\backController@detail');
             Route::get('/hapus/{id}', 'back\\backController@hapusProgram');
-
-            // Coba route kelola pengguna
-            Route::get('/controluser', 'back\\backController@user');
+            Route::get('/users', 'back\\backController@kelolaUser');
+            Route::post('/users/create', 'back\\backController@createUser');
+            Route::get('/users/deleteUser/{id}', 'back\\backController@hapusUser');
+            Route::get('/users/edit/{id}', 'back\\backController@editUser');
+            Route::post('/users/{id}/update','back\\backController@updateUser' );
+            Route::get('/users/search','back\\backController@cari');
+            Route::get('/users/filter','back\\backController@filter');
         });   
     });
 });
