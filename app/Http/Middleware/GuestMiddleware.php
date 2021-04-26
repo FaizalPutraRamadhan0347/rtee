@@ -15,9 +15,9 @@ class GuestMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user() && $request->user()->type != ‘0’)
+        if ($request->user() && $request->user()->type != ‘user’)
         {
-        return new Response(view(‘unauthorized’)->with(‘role’, ‘0’));
+        return new Response(view(‘unauthorized’)->with(‘role’, ‘user’));
         }
 
         return $next($request);
