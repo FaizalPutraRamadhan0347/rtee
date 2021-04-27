@@ -46,7 +46,8 @@
         </div>  
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+    {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button> --}}
+    <a href="/admin/users" class="btn btn-default">Tutup</a>
     <button type="submit" class="btn btn-primary">Update</button>
 </div>
 </form>
