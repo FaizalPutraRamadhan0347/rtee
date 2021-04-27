@@ -343,6 +343,8 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="{{asset('back-assets/assets/libs/jquery/dist/jquery.min.js')}}"></script>
+    <!-- Sweetalert2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{asset('back-assets/assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
     <script src="{{asset('back-assets/assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
