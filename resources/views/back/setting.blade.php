@@ -18,16 +18,12 @@
     <div class="input-group mb-3 col-6">
         <input type="number" id="persen" class="form-control" placeholder="Percentage" aria-label="Percentage" aria-describedby="button-addon2">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">%</button>
+          <button class="btn btn-secondary" type="button" id="button-addon2">%</button>
         </div>
     </div>
     <div class="form-group col-6">
       <label for="rekbank">Bank Account Information</label>
-      <textarea 
-        class="form-control" 
-        id="rekbank" 
-        rows="3" 
-        value="BCA 12345678">BCA</textarea>
+      <textarea class="form-control" id="rekbank" rows="8"></textarea>
         <button type="button" class="btn btn-primary mt-4">Save</button>
     </div>
   </form>
