@@ -222,4 +222,10 @@ class backController extends Controller
 
 
 
+    // UNTUK HALAMAN SETTINGS ADMIN
+    public function globalSetting()
+    {
+        return \view('back.setting');
+    }
+
 }
