@@ -13,18 +13,23 @@
 @endsection
 
 @section('content')
-<form>
+{{-- {{ dd($global_settings) }} --}}
+<form action="updateGlobal" method="POST">
+  {{ csrf_field() }}
+
     <label class="col-6" for="persen">Operational Percentage</label>
     <div class="input-group mb-3 col-6">
-        <input type="number" id="persen" class="form-control" placeholder="Percentage" aria-label="Percentage" aria-describedby="button-addon2">
+        <input type="number"  name="persen" id="persen" class="form-control" placeholder="Percentage" aria-label="Percentage" aria-describedby="button-addon2" value="{{ $global_setting->persen }}">
         <div class="input-group-append">
-          <button class="btn btn-secondary" type="button" id="button-addon2">%</button>
+          <p class="btn btn-outline-secondary" id="button-addon2">%</p>
         </div>
     </div>
     <div class="form-group col-6">
       <label for="rekbank">Bank Account Information</label>
-      <textarea class="form-control" id="rekbank" rows="8"></textarea>
-        <button type="button" class="btn btn-primary mt-4">Save</button>
+      <textarea class="form-control" name="inforekening" id="rekbank" rows="8">{{ $global_setting->inforekening }}</textarea>
+      <button type="submit" class="btn btn-primary mt-4">Save</button>
     </div>
-  </form>
+</form>
+
+
 @endsection

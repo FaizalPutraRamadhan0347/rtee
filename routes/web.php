@@ -63,6 +63,7 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function (
             Route::get('/users/search','back\\backController@cari');
             Route::get('/users/filter','back\\backController@filter');
             Route::get('/settings', 'back\\backController@globalSetting');
+            Route::post('/updateGlobal', 'back\\backController@updateSetting');
         });   
     });
 });

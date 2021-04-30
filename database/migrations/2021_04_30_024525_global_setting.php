@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDevelopmentsTable extends Migration
+class GlobalSetting extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class CreateDevelopmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('developments', function (Blueprint $table) {
+        Schema::create('global_setting', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('program_id');
-            $table->string('title', 120);
-            $table->text('description');
+            // $table->string('setting_name', 100);
+            // $table->string('setting_value', 200);
+            $table->integer('persen');
+            // $table->index('persen');
+            $table->string('inforekening', 100);
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -29,6 +32,6 @@ class CreateDevelopmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('developments');
+        Schema::dropIfExists('global_setting');
     }
 }

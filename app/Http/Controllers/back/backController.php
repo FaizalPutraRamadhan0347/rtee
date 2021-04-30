@@ -12,6 +12,7 @@ use App\Category;
 use App\User;
 use App\Development;
 use App\Report;
+use App\GlobalSetting;
 
 class backController extends Controller
 {
@@ -202,6 +203,24 @@ class backController extends Controller
         return redirect('/admin/users');
     }
 
+    // UNTUK HALAMAN SETTINGS ADMIN
+    public function globalSetting()
+    {
+        $global_settings = \App\GlobalSetting::find(1);
+        // $settings = GlobalSetting::all();
+        return view('back.setting', ['global_setting' => $global_settings]);
+    }
+
+    public function updateSetting(Request $request){
+        // $user = new \App\User;
+        $global_settings = \App\GlobalSetting::find(1);
+        $global_settings->persen = $request->persen;
+        $global_settings->inforekening = $request->inforekening;
+        $global_settings->save();
+
+        return redirect()->back();
+    }
+
     // public function search(Request $request)
     // {
     //     $search =  $request->input('q');
@@ -222,10 +241,5 @@ class backController extends Controller
 
 
 
-    // UNTUK HALAMAN SETTINGS ADMIN
-    public function globalSetting()
-    {
-        return \view('back.setting');
-    }
 
 }
