@@ -69,7 +69,6 @@
                         <td>{{$i++}}</td>
                         <td>{{$category->category_name}}</td>
                         <td>
-                            {{-- <a class="btn btn-danger popup-confirm-delete" href="/admin/delete/{{$category->id}}">Hapus</a> --}}
                             <a class="btn btn-danger popup-confirm-delete" href="/admin/delete/{{$category->id}}">Hapus</a>
                         </td>
                     </tr>
@@ -83,9 +82,4 @@
 @endsection
 @section('script')
 <script src="{{asset('back-assets/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
-@endsection
-
-@section('sweeturl')
-{{-- var deleteurl = $(this).attr('href'); --}}
-
 @endsection
