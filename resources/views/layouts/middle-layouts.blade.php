@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{asset('middle-assets/css/themes/comfort.min.css')}}" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap-grid.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+  @yield('style')
 </head>
 
 <body>
