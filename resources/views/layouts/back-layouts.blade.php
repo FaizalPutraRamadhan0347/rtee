@@ -183,6 +183,13 @@
                                 <span class="hide-menu">Kelola Kategori</span>
                             </a>
                         </li>
+                        
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/controluser" aria-expanded="false">
+                                <i class="mdi mdi-av-timer"></i>
+                                <span class="hide-menu">Kelola Pengguna</span>
+                            </a>
+                        </li>
 
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="/admin/users" aria-expanded="false">
@@ -386,5 +393,30 @@
     </script>
     @include('sweetalert::alert')
 
-
+    <script>    
+        $('.popup-confirm-delete').click(function(e) {
+            e.preventDefault();
+            var deleteurl = $(this).attr('href');
+            
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+            }).then((result) => {
+                if (result.value === true) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    window.location = deleteurl;
+                } 
+            })
+        })
+    </script>
 </html>
