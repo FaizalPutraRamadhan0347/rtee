@@ -183,6 +183,13 @@
                                 <span class="hide-menu">Kelola Kategori</span>
                             </a>
                         </li>
+                        
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/controluser" aria-expanded="false">
+                                <i class="mdi mdi-av-timer"></i>
+                                <span class="hide-menu">Kelola Pengguna</span>
+                            </a>
+                        </li>
 
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="/admin/users" aria-expanded="false">
