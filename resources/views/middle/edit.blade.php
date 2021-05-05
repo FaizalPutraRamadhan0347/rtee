@@ -102,7 +102,7 @@ textarea{
         </div>
 
         <div class="form-group label--floating">
-            <input type="text" name="shelter_account_number" value="{{$program->shelter_account_number}}"><label>Nomor Rekening Penampungan</label>
+            <input type="text" name="shelter_account_number" value="1230-2-12124" disabled style="background: #fff"><label>Nomor Rekening Penampungan</label>
         </div>
 
         <label><small class="small">Deskripsi Program</small></label><br>

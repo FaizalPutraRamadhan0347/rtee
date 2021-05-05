@@ -81,9 +81,6 @@ input, select, textarea{
             <input type="date" name="time_is_up" id="time_is_up">
         </div>
 
-        <div class="form-group label--floating">
-            <input type="text" name="shelter_account_number" value="1230-2-12124" disabled style="background: #fff"><label>Nomor Rekening Penampungan</label>
-        </div>
 
         <label><small class="small">Deskripsi Program</small></label><br>
         <div class="alert alert--info alert--dismissible">
