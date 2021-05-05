@@ -350,6 +350,8 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="{{asset('back-assets/assets/libs/jquery/dist/jquery.min.js')}}"></script>
+    <!-- Sweetalert2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{asset('back-assets/assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
     <script src="{{asset('back-assets/assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
@@ -384,5 +386,30 @@
     </script>
     @include('sweetalert::alert')
 
-
+    <script>    
+        $('.popup-confirm-delete').click(function(e) {
+            e.preventDefault();
+            var deleteurl = $(this).attr('href');
+            
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+            }).then((result) => {
+                if (result.value === true) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    window.location = deleteurl;
+                } 
+            })
+        })
+    </script>
 </html>

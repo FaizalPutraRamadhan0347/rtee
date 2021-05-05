@@ -69,7 +69,7 @@
                         <td>{{$i++}}</td>
                         <td>{{$category->category_name}}</td>
                         <td>
-                            <a class="btn btn-danger" href="/admin/delete/{{$category->id}}">Hapus</a>
+                            <a class="btn btn-danger popup-confirm-delete" href="/admin/delete/{{$category->id}}">Hapus</a>
                         </td>
                     </tr>
                     @endforeach
@@ -82,5 +82,4 @@
 @endsection
 @section('script')
 <script src="{{asset('back-assets/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
-
 @endsection

@@ -170,7 +170,7 @@
                         <td style="color: white">
                             <a class="btn btn-secondary">Lihat</a>
                             <a class="btn btn-secondary" href="/admin/users/edit/{{ $user->id }}/">Ubah</a>
-                            <a class="btn btn-danger" href="/admin/users/deleteUser/{{ $user->id }}">Hapus</a>
+                            <a class="btn btn-danger popup-confirm-delete" href="/admin/users/deleteUser/{{ $user->id }}">Hapus</a>
 
                             {{-- Membuat Kondisi Button sesuai status --}}
                             <a class="btn btn-primary">Enable</a>
@@ -205,6 +205,8 @@
         </ul>
       </nav>
     
+
+      
 
 
 @endsection

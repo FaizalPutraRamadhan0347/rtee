@@ -38,7 +38,7 @@
                                             <td>{{$program->created_at->toDateString()}}</td>
                                             
                                             <td><a class="btn btn-sm btn-secondary" href="/admin/detail/{{$program->id}}">Detail</a>
-                                            <a class="btn btn-sm btn-danger" href="/admin/hapus/{{$program->id}}">Hapus Program</a>
+                                            <a class="btn btn-sm btn-danger popup-confirm-delete" href="/admin/hapus/{{$program->id}}">Hapus Program</a>
                                             </td>
                                             
         
@@ -51,4 +51,7 @@
                 </div>
     </div>
 
+@endsection
+@section('script')
+<script src="{{asset('back-assets/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
 @endsection
