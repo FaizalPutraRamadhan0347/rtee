@@ -198,6 +198,13 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/admin/settings" aria-expanded="false">
+                                <i class="mdi mdi-wrench"></i>
+                                <span class="hide-menu">Setting</span>
+                            </a>
+                        </li>
+
                         <div class="devider"></div>
                     </ul>
                 </nav>
