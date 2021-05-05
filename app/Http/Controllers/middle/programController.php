@@ -9,6 +9,7 @@ use App\Category;
 use App\Program;
 use App\Development;
 use App\DonationConfirmation;
+use App\GlobalSetting;
 
 class programController extends Controller
 {
@@ -56,9 +57,10 @@ class programController extends Controller
 
     public function detailprogram($id){
         $program = Program::find($id);
+        $no_rek = \App\GlobalSetting::find(1);
         $devs = Development::all()->where('program_id', $program->id);
         $donatur = DonationConfirmation::where('program_id', $id)->count();
-        return view('middle.detailprogram', compact('program', 'devs', 'donatur'));
+        return view('middle.detailprogram', compact('program', 'no_rek','devs', 'donatur'));
     }
 
     public function middle(){

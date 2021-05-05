@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Program;
+use App\GlobalSetting;
 use App\Development;
 use App\DonationConfirmation;
 use App\User;
@@ -95,8 +96,9 @@ class frontController extends Controller
 
     public function thx($id){
         $donatur = DonationConfirmation::find($id);
+        $no_rek = \App\GlobalSetting::find(1);
         $program = Program::where('id', $donatur->program_id)->first();
-        return view('thx', compact('donatur', 'program'));
+        return view('thx', compact('donatur','no_rek','program'));
     }
 
     public function report(Request $request){
