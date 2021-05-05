@@ -76,6 +76,7 @@
   </div>
   <script src="{{asset('middle-assets/js/main.min.js')}}"></script>
   <script src="{{asset('middle-assets/js/chartDemoWidget.min.js')}}"></script>
+  <script src="{{asset('back-assets/assets/libs/tinymce/tinymce.min.js')}}"></script>
   @yield('script')
   @include('sweetalert::alert')
 

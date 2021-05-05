@@ -89,44 +89,52 @@ input, select, textarea{
         <div class="alert alert--info alert--dismissible">
             <p><span>Isi Deskripsi Program dengan Selengkap-lengkapnya, Boleh Memasukan Gambar atau Foto</span></p>
             <div class="alert-dismiss"><button class="btn btn-icon"><i class="la la-times"></i></button></div>
-        </div>
-        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-        <textarea name="description" class="form-control my-editor"></textarea>
-        <script>
-          var editor_config = {
-            path_absolute : "/",
-            selector: "textarea.my-editor",
-            plugins: [
-              "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-              "searchreplace wordcount visualblocks visualchars fullscreen",
-              "insertdatetime media nonbreaking save table contextmenu directionality",
-              "emoticons template paste textcolor colorpicker textpattern"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-            relative_urls: false,
-            file_browser_callback : function(field_name, url, type, win) {
-              var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-              var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+        </div>      
+        {{-- <script src="//cdn.tinymce.com/5/tinymce.min.js"></script> --}}
+        <script src="{{asset('back-assets/assets/libs/tinymce/tinymce.min.js')}}"></script>
+        <textarea name="description" class="form-control" id="myeditor"></textarea>
+        <script  type="text/javascript">
         
-              var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
-              if (type == 'image') {
-                cmsURL = cmsURL + "&type=Images";
-              } else {
-                cmsURL = cmsURL + "&type=Files";
-              }
+        tinymce.init({
+          selector : 'textarea#myeditor',
+          plugins: 'quickbars table image link lists media autoresize help',
+          toolbar: 'undo redo | formatselect | bold italic | alignleft aligncentre alignright alignjustify | indent outdent | bullist numlist',
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        });
+
         
-              tinyMCE.activeEditor.windowManager.open({
-                file : cmsURL,
-                title : 'Filemanager',
-                width : x * 0.8,
-                height : y * 0.8,
-                resizable : "yes",
-                close_previous : "no"
-              });
-            }
-          };
-        
-          tinymce.init(editor_config);
+        // var editor_config = {
+        //   path_absolute : "/",
+        //   selector: "textarea#my-editor",
+        //   plugins: [
+        //     "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        //     "searchreplace wordcount visualblocks visualchars fullscreen",
+        //     "insertdatetime media nonbreaking save table contextmenu directionality",
+        //     "emoticons template paste textcolor colorpicker textpattern"
+        //   ],
+        //   toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+        //   relative_urls: false,
+        //   file_browser_callback : function(field_name, url, type, win) {
+        //     var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+        //     var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+      
+        //     var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+        //     if (type == 'image') {
+        //       cmsURL = cmsURL + "&type=Images";
+        //     } else {
+        //       cmsURL = cmsURL + "&type=Files";
+        //     }
+      
+        //     tinyMCE.activeEditor.windowManager.open({
+        //       file : cmsURL,
+        //       title : 'Filemanager',
+        //       width : x * 0.8,
+        //       height : y * 0.8,
+        //       resizable : "yes",
+        //       close_previous : "no"
+        //     });
+        //   }
+        // };
         </script>
 
 
@@ -139,7 +147,7 @@ input, select, textarea{
 @section('script')  
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
 <script>
-
+  
   $("form").on("change", ".file-upload-field", function(){ 
     $(this).parent(".file-upload-wrapper").attr("data-text",         $(this).val().replace(/.*(\/|\\)/, '') );
 });
