@@ -69,8 +69,7 @@
                         <td>{{$i++}}</td>
                         <td>{{$category->category_name}}</td>
                         <td>
-                            {{-- <a class="btn btn-danger" href="/admin/delete/{{$category->id}}">Hapus</a> --}}
-                            <a class="btn btn-danger popup-confirm-delete" href="#" category-id="{{ $category->id }}">Hapus</a>
+                            <a class="btn btn-danger popup-confirm-delete" href="/admin/delete/{{$category->id}}">Hapus</a>
                         </td>
                     </tr>
                     @endforeach
@@ -83,41 +82,4 @@
 @endsection
 @section('script')
 <script src="{{asset('back-assets/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
-
-<script>    
-    $('.popup-confirm-delete').click(function() {
-        
-        var categories_id = $(this).attr('category-id')
-        
-        Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        }).then((result) => {
-        console.log(result)
-        if (result.value === true) {
-            Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-            )
-            window.location = "/admin/delete/" + categories_id;
-        } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === 'cancel'
-        ) {
-            Swal.fire(
-            'Cancelled',
-            'Your imaginary file is safe :)',
-            'error'
-            )
-            }
-        })
-    })
-</script>
 @endsection

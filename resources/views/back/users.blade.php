@@ -170,8 +170,7 @@
                         <td style="color: white">
                             <a class="btn btn-secondary">Lihat</a>
                             <a class="btn btn-secondary" href="/admin/users/edit/{{ $user->id }}/">Ubah</a>
-                            {{-- <a class="btn btn-danger" href="/admin/users/deleteUser/{{ $user->id }}">Hapus</a> --}}
-                            <a class="btn btn-danger popup-confirm-delete" href="#" user-id="{{ $user->id }}">Hapus</a>
+                            <a class="btn btn-danger popup-confirm-delete" href="/admin/users/deleteUser/{{ $user->id }}">Hapus</a>
 
                             {{-- Membuat Kondisi Button sesuai status --}}
                             <a class="btn btn-primary">Enable</a>
@@ -214,76 +213,4 @@
 @section('script')
 <script src="{{asset('back-assets/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
 
-
-<script>
-    $('.popup-confirm-delete').click(function() {
-        // Swal.fire({
-        //     title: "Delete?",
-        //     text: "Please ensure and then confirm!",
-        //     type: "warning",
-        //     showCancelButton: !0,
-        //     confirmButtonText: "Yes, delete it!",
-        //     cancelButtonText: "No, cancel!",
-        //     reverseButtons: !0
-        // }).then(function (e) {
-
-        //     if (e.value === true) {
-        //         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: "{{url('/users')}}/" + id,
-        //             data: {_token: CSRF_TOKEN},
-        //             dataType: 'JSON',
-        //             success: function (results) {
-
-        //                 if (results.success === true) {
-        //                     swal("Done!", results.message, "success");
-        //                 } else {
-        //                     swal("Error!", results.message, "error");
-        //                 }
-        //             }
-        //         });
-
-        //     } else {
-        //         e.dismiss;
-        //     }
-
-        // }, function (dismiss) {
-        //     return false;
-        // })
-        
-        var user_id = $(this).attr('user-id')
-        
-        Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        }).then((result) => {
-        console.log(result)
-        if (result.value === true) {
-            Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-            )
-            window.location = "/admin/users/deleteUser/" + user_id;
-        } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === 'cancel'
-        ) {
-            Swal.fire(
-            'Cancelled',
-            'Your imaginary file is safe :)',
-            'error'
-            )
-            }
-        })
-    })
-</script>
 @endsection
