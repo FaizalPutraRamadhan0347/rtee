@@ -140,7 +140,7 @@ ul { list-style-type: none; }
                             </tr>
                             <tr>
                                 <td>Nomor Rekening Penampungan</td>
-                                <td>{{ $no_rek->inforekening }}</td>
+                                <td>{!! nl2br($no_rek->inforekening) !!}</td>
                             </tr>
                         </tbody>
                     </table>
