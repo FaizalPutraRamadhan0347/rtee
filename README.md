@@ -5,13 +5,14 @@ sedekahitumudah.com
 
 - Clone Project dari repo
 - buat database dengan nama `sedekahitumudah`
-- import database (`database/sedekahitumudah.sql`) 
 - jalankan syntax berikut di cmd/terminal/git bash
 
 ```
 $ composer install
 $ cp .env.example .env
 $ php artisan key:generate
+$ php artisan migrate
+$ php artisan db:seed
 ```
 
 jika user mysql bukan root dan ada passwordnya tidak kosong, silakan ubah settingan di file `.env` nya
@@ -26,11 +27,15 @@ $ php artisan serve
 
 buka http://localhost:8000 di browser 
 
-#### Login Admin
+#### Akses Login Default
 
 ```
 e: admin@gmail.com
-p: 1234567890
-```
+p: admin
 
-Untuk login user silahkan registrasi sendiri
+e: partner@gmail.com
+p: partner
+
+e: user@gmail.com
+p: user
+```
