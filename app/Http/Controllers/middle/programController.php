@@ -110,7 +110,6 @@ class programController extends Controller
             'brief_explanation' => ['required', 'max:200'],
             'donation_target' => ['required', 'min:7'],
             'description' => ['required'],
-            'shelter_account_number' => ['required'],
         ]);
 
        $program = Program::create($request->all());
