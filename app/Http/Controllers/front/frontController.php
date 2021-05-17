@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\front;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestEmail;
+
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Program;
@@ -111,5 +114,10 @@ class frontController extends Controller
         $donatur = DonationConfirmation::find($id);
         $program = Program::where('id', $donatur->program_id)->first();
         return view('thxkonfir', compact('donatur', 'program'));
+    }
+
+    public function testemail()
+    {
+        Mail::to('wisnuhafid@gmail.com')->send(new TestEmail('Wisnu'));
     }
 }

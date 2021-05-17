@@ -38,8 +38,7 @@
                                             <td>{{$program->created_at->toDateString()}}</td>
                                             
                                             <td><a class="btn btn-sm btn-secondary" href="/admin/detail/{{$program->id}}">Detail</a>
-                                            {{-- <a class="btn btn-sm btn-danger" href="/admin/hapus/{{$program->id}}">Hapus Program</a> --}}
-                                            <a class="btn btn-sm btn-danger popup-confirm-delete" href="#" program-id="{{ $program->id }}">Hapus Program</a>
+                                            <a class="btn btn-sm btn-danger popup-confirm-delete" href="/admin/hapus/{{$program->id}}">Hapus Program</a>
                                             </td>
                                             
         
@@ -55,41 +54,4 @@
 @endsection
 @section('script')
 <script src="{{asset('back-assets/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
-
-<script>    
-    $('.popup-confirm-delete').click(function() {
-        
-        var program_id = $(this).attr('program-id')
-        
-        Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        }).then((result) => {
-        console.log(result)
-        if (result.value === true) {
-            Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-            )
-            window.location = "/admin/hapus/" + program_id;
-        } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === 'cancel'
-        ) {
-            Swal.fire(
-            'Cancelled',
-            'Your imaginary file is safe :)',
-            'error'
-            )
-            }
-        })
-    })
-</script>
 @endsection

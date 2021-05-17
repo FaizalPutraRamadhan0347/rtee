@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{asset('middle-assets/css/themes/comfort.min.css')}}" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap-grid.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+  @yield('style')
 </head>
 
 <body>
@@ -76,6 +77,7 @@
   </div>
   <script src="{{asset('middle-assets/js/main.min.js')}}"></script>
   <script src="{{asset('middle-assets/js/chartDemoWidget.min.js')}}"></script>
+  <script src="{{asset('back-assets/assets/libs/tinymce/tinymce.min.js')}}"></script>
   @yield('script')
   @include('sweetalert::alert')
 
