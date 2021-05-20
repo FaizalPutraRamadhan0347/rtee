@@ -30,7 +30,7 @@ class DropShelterAccount extends Migration
     public function down()
     {
         //
-        Schema::create('programs', function (Blueprint $table) {
+        Schema::table('programs', function (Blueprint $table) {
             $table->string('shelter_account_number', 45);
         });
     }
