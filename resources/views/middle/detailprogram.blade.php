@@ -140,7 +140,7 @@ ul { list-style-type: none; }
                             </tr>
                             <tr>
                                 <td>Nomor Rekening Penampungan</td>
-                                <td>{{$program->shelter_account_number}}</td>
+                                <td>{!! nl2br($no_rek->inforekening) !!}</td>
                             </tr>
                         </tbody>
                     </table>

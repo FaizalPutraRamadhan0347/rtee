@@ -103,9 +103,6 @@ textarea{
             <input type="date" name="time_is_up" id="time_is_up" value="{{$program->time_is_up}}">
         </div>
 
-        <div class="form-group label--floating">
-            <input type="text" name="shelter_account_number" value="{{$program->shelter_account_number}}"><label>Nomor Rekening Penampungan</label>
-        </div>
 
         <label><small class="small">Deskripsi Program</small></label><br>
         <div class="alert alert--info alert--dismissible">

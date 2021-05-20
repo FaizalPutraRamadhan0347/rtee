@@ -110,7 +110,7 @@
 
                     <div class="alert alert-success">
                         <span>ID Transaksi : <strong>{{$donatur->id_transaksi}}</strong></span><br>
-                        <span>Nomor Rekening Tujuan : <strong>{{$program->shelter_account_number}}</strong></span>
+                        <span>Nomor Rekening Tujuan : <br> <strong>{!! nl2br($no_rek->inforekening) !!}</strong></span>
                     </div>
 
                     <p class="text-justify alert alert-success">Silahkan melakukan pembayaran sesuai nominal donasi yang anda berikan ke nomor rekening tujuan juga melakukan konfirmasi pembayaran setelah melakukan pembayaran menggunakan ID transaksi, maka dari itu Anda perlu mengingat ID transaksi yang diberikan. Jika perlu, Anda bisa <i>screenshoot</i> halaman ini</p> 
