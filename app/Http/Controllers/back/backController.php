@@ -20,10 +20,11 @@ class backController extends Controller
         $program = Program::count();
         $programPublished = Program::where('isPublished', 1)->count();
         $programSelected = Program::where('isSelected', 1)->count();
-        $user = User::where('role', 0)->count();
+        $user = User::where('role', 'user')->count();
+        $partner = User::where('role', 'partner')->count();
         $category = Category::count();
     
-        return view('back.index', compact('program', 'programPublished', 'user', 'category', 'programSelected'));
+        return view('back.index', compact('program', 'programPublished', 'user', 'partner' , 'category', 'programSelected'));
     }
 
     public function categories(){
@@ -76,128 +77,6 @@ class backController extends Controller
         return redirect()->back();
     }
 
-    public function kelolaUser()
-    {
-        // mengambil data dari table users
-        $users = DB::table('users')->paginate(10);
-
-        // mengirim data users ke view users
-        // $users = User::all();
-        return view('back.users' , ['users' => $users]);
-    }
-
-    public function cari(Request $request)
-	{
-		// menangkap data pencarian
-		// $cari = $request->cari;
-        $cari = $request->get('cari');
- 
-    		// mengambil data dari table pegawai sesuai pencarian data
-		$users = DB::table('users')
-		->where('name','like',"%".$cari."%")
-        ->orWhere('email', 'like', '%'.$cari.'%')
-        ->orWhere('no_hp', 'like', '%'.$cari.'%')
-        ->orWhere('status', 'like', '%'.$cari.'%')
-		->paginate(5);
- 
-    		// mengirim data pegawai ke view index
-		return view('back.users',['users' => $users]);
- 
-	}
-
-    public function filter(Request $request)    
-    {
-        $filter = $request->get('filter');
-        
-
-        $users = DB::table('users')
-        ->where('role', 'like', "%".$filter."%")
-        ->orWhere('status', 'like', "%".$filter."%")
-        ->paginate(5);
-
-        return view('back.users',['users' => $users]);
-    }
-
-
-    public function createUser(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required|min:2|max:120',
-            'email' => 'required|unique:users|max:120',
-            'no_hp' => 'required|min:2|max:15',
-            'password' => 'required|min:6|max:255',
-            'cpassword' => 'required|max:255|same:password',
-            'role' => 'required',
-        ], [
-            'name.required' => 'masukan nama', 
-            'email.required' => 'masukan email', 
-            'no_hp.required' => 'masukan nomor telepon atau nomor hp',
-            'password.required' => 'masukan password minimal 6 karakter',
-            'cpassword.required' => 'konfirmasi password',
-            'cpassword.same' => 'tidak cocok dengan password',
-            'role.required' => 'pilihlah role pengguna',
-
-
-        ]);
-        
-        $user = new \App\User;
-        $user->role = $request->role;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->no_hp = $request->no_hp;
-        if($request->role == 'user' || 'admin'){
-            $user->status = 'active';
-        } else {
-            $user->status = 'pending';
-        }
-        // $user->status = $request->status;
-        $user->password = bcrypt($request->password);
-        $user->remember_token = str::random(60);
-        $user->save();
-
-
-        // Insert ke table siswa
-        $request->request->add(['user_id' => $user->id]);
-        // $siswa = \App\User::create($request->all()) ;
-        return redirect('admin/users');
-        
-
-        // User::create($request->all());
-        // return redirect()->back();
-    }
-
-    public function hapusUser($id)
-    {
-        // $user = User::find($id);
-        User::destroy($id);
-        // $user->delete();
-        return redirect()->back();
-    }
-
-    public function editUser($id)
-    {
-        $user = \App\User::find($id);
-        // dd($user);
-        return view('back.editUser', ['user' => $user]);
-    }
-
-    public function updateUser(Request $request, $id)
-    {
-        // $user = new \App\User;
-        $user = \App\User::find($id);
-        $user->role = $request->role;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->no_hp = $request->no_hp;
-        // $user->status = 'active';
-        // $user->status = $request->status;
-        $user->password = bcrypt($request->password);
-        // $user->remember_token = str::random(60);
-        $user->save();
-        // $user->update($request->all());
-        return redirect('/admin/users');
-    }
-
     // UNTUK HALAMAN SETTINGS ADMIN
     public function globalSetting()
     {
@@ -215,22 +94,4 @@ class backController extends Controller
 
         return redirect()->back();
     }
-
-    // public function search(Request $request)
-    // {
-    //     $search =  $request->input('q');
-    //     if($search!=""){
-    //         $users = User::where(function ($query) use ($search){
-    //             $query->where('name', 'like', '%'.$search.'%')
-    //                 ->orWhere('email', 'like', '%'.$search.'%');
-    //         })
-    //         ->paginate(2);
-    //         $users->appends(['q' => $search]);
-    //     }
-    //     else{
-    //         $users = User::paginate(2);
-    //     }
-    //     return View('back.user')->with('data',$users);
-    //     //
-    // }
 }

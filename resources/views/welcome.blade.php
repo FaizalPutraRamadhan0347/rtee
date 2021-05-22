@@ -1,6 +1,6 @@
 @extends('layouts.front-layouts')
 @section('title')
-    Halaman Utama
+    Sedekah itu Mudah
 @endsection
 
 @section('style')
