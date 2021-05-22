@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-6">
                 {{-- Search Box --}}
-                <form action="/admin/users/search" method="GET">
+                <form action="/admin/users" method="GET">
                     <div class="float-left mt-4 ml-4 input-group col-6">
                         <input type="text" name="cari" class="form-control" placeholder="Search..." value="{{ old('cari') }}" aria-describedby="button-addon2">
                         <div class="input-group-append">
@@ -36,17 +36,18 @@
             </div>
             <div class="col-4 float-left">
                 {{-- Select Filter --}}
-                <form action="/admin/users/filter" method="GET">
+                <form action="/admin/users" method="GET">
                     <div class="float-left mt-4 ml-4 input-group ">
-                        <select name="filter" class="col-3 custom-select float-left" name="filter_status" id="filter_status">
+                        <select class="col-3 custom-select float-left" name="filter" id="filter_status">
                             <option selected disabled>Show By</option>
+                            <option value="">All</option>
                             <option value="user">User</option>
                             <option value="partner">Partner</option>
                             <option value="pending">All Pending Partner</option>
                             <option value="active">All Active User</option>
                         </select>
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" value="Filter" type="submit" id="button-addon2">Filter</button>
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Filter</button>
                         </div>
                     </div>
                 </form>
@@ -217,7 +218,7 @@
         </ul>
       </nav>
     
-
+      <p class="text-center">Total Data: <b>{{ $total_data }}</b></p>
       
 
 

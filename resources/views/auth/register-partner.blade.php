@@ -36,12 +36,7 @@
                         <h5 class="font-medium mb-3">Pendaftaran Lembaga / Partner</h5>
                     </div>
                     <form action="{{route('register-partner')}}" method="post">
-                        @csrf
-                    
-                        @foreach ($errors->all() as $message)
-                            {{ $message }}
-                        @endforeach
-
+                        @csrf                    
                     <div class="row">
                         <div class="col-12">
                             <div class="form-horizontal mt-3">
@@ -71,21 +66,21 @@
                                 <div class="form-group row">
                                     <div class="col-12 ">
                                         <input class="form-control-lg form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" type="email" required placeholder="Alamat Email">
-                                        @if ($errors->has('email'))
+                                        @error('email')
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>Email ini Sudah Terdaftar</strong>
+                                                <strong>{{ $message }}</strong>
                                             </span>
-                                        @endif
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-12 ">
                                         <input class="form-control-lg form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" type="password" required autocomplete="new-password" placeholder="Password">
-                                        @if ($errors->has('password'))
+                                        @error('password')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>Password Tidak Boleh Kurang Dari 8 Karakter</strong>
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                        @endif
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row">

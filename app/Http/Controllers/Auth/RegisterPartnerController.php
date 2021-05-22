@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use App\Model\Partner;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
+use App\User;
+use App\Model\Partner;
+use App\Mail\PartnerRegisterEmail;
+use App\Rules\EmailExists;
 
 class RegisterPartnerController extends Controller
 {
@@ -76,17 +79,15 @@ class RegisterPartnerController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:120'],
             'no_hp' => ['required', 'max:15'],
-            'email' => [
-                'required',
-                Rule::exists('users')->where(function ($query) {
-                    $query->where('status', 'reject');
-                }),
-            ],
+            'email' => ['required', new EmailExists],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'partner_name' => ['required', 'string', 'max:120'],
             'partner_address' => ['required', 'string', 'min:30'],
             'partner_phone' => ['required', 'max:15'],
             'partner_info' => ['required', 'string', 'min:30'],
+        ], [
+            'password.min' => 'Password Tidak Boleh Kurang Dari 8 Karakter',
+            'password.confirmed' => 'Password Tidak Sama',
         ]);
     }
 
@@ -129,9 +130,13 @@ class RegisterPartnerController extends Controller
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
+        
+        $user = $this->create($request->all());
 
-        event(new Registered($user = $this->create($request->all())));
+        event(new Registered($user));
 
+        Mail::to($user->email)->send(new PartnerRegisterEmail($user->name));
+        
         return redirect($this->redirectPath());
     }
 }

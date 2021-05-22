@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Validation\Rule;
+use App\Rules\EmailExists;
 
 class RegisterController extends Controller
 {
@@ -52,13 +53,11 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:120'],
             'no_hp' => ['required', 'max:15'],
-            'email' => [
-                'required',
-                Rule::exists('users')->where(function ($query) {
-                    $query->where('status', 'reject');
-                }),
-            ],
+            'email' => ['required', new EmailExists],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            'password.min' => 'Password Tidak Boleh Kurang Dari 8 Karakter',
+            'password.confirmed' => 'Password Tidak Sama',
         ]);
     }
 

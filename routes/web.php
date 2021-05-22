@@ -60,14 +60,17 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function (
             Route::get('/delete/{id}', 'back\\backController@destroy');
             Route::get('/detail/{id}', 'back\\backController@detail');
             Route::get('/hapus/{id}', 'back\\backController@hapusProgram');
-            Route::get('/users', 'back\\backController@kelolaUser');
-            Route::post('/users/create', 'back\\backController@createUser');
-            Route::get('/users/deleteUser/{id}', 'back\\backController@hapusUser');
-            Route::get('/users/edit/{id}', 'back\\backController@editUser');
-            Route::post('/users/{id}/update','back\\backController@updateUser' );
-            Route::get('/users/search','back\\backController@cari');
-            Route::get('/users/filter','back\\backController@filter');
-            Route::get('/users/{id}/{status}', 'back\\backController@updateStatus');
+
+            // Kelola Pengguna
+            Route::get('/users', 'back\\UserAdminController@index');
+            Route::post('/users/create', 'back\\UserAdminController@create');
+            Route::get('/users/deleteUser/{id}', 'back\\UserAdminController@delete');
+            Route::get('/users/edit/{id}', 'back\\UserAdminController@edit');
+            Route::post('/users/{id}/update','back\\UserAdminController@update' );
+            Route::get('/users/search','back\\UserAdminController@search');
+            Route::get('/users/filter','back\\UserAdminController@filter');
+            Route::get('/users/{id}/{status}', 'back\\UserAdminController@updateStatus');
+
             Route::get('/settings', 'back\\backController@globalSetting');
             Route::post('/updateGlobal', 'back\\backController@updateSetting');
         });   
