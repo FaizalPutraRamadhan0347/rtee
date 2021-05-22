@@ -26,11 +26,6 @@ class backController extends Controller
         return view('back.index', compact('program', 'programPublished', 'user', 'category', 'programSelected'));
     }
 
-    public function program(){
-        $programs = Program::with('report')->get();
-        return view('back.program', compact('programs'));
-    }
-
     public function categories(){
         $categories = Category::all();
         return view('back.categories', ['categories' => $categories]);
@@ -238,5 +233,4 @@ class backController extends Controller
     //     return View('back.user')->with('data',$users);
     //     //
     // }
-
 }
