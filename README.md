@@ -1,5 +1,6 @@
 ### Sedekah itu Mudah
 sedekahitumudah.com
+dev by webhade creative
 
 #### Install
 
