@@ -150,6 +150,7 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>No HP/Telp</th>
+                        <th>Role</th>
                         <th>Status</th>
                         <th class="">Aksi</th>
                     </tr>
@@ -166,14 +167,25 @@
                         <td>{{ $user->name}}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->no_hp }}</td>
-                        <td>{{ $user->status }}</td>
+                        <td>{{ $user->role }}</td>
+                        <td>{{ $user_status[$user->status] }}</td>
                         <td style="color: white">
                             <a class="btn btn-secondary">Lihat</a>
                             <a class="btn btn-secondary" href="/admin/users/edit/{{ $user->id }}/">Ubah</a>
                             <a class="btn btn-danger popup-confirm-delete" href="/admin/users/deleteUser/{{ $user->id }}">Hapus</a>
 
-                            {{-- Membuat Kondisi Button sesuai status --}}
-                            <a class="btn btn-primary">Enable</a>
+                            @if ($user->status == 'suspend')
+                                <a href="/admin/users/{{ $user->id }}/active" class="btn btn-primary popup-confirm-action">Enable</a>
+                            @endif
+
+                            @if ($user->status == 'pending')
+                                <a href="/admin/users/{{ $user->id }}/active" class="btn btn-success popup-confirm-approve">Approve</a>
+                                <a href="/admin/users/{{ $user->id }}/reject" class="btn btn-danger popup-confirm-reject">Reject</a>
+                            @endif
+
+                            @if ($user->status == 'active')
+                                <a href="/admin/users/{{ $user->id }}/suspend" class="btn btn-warning popup-confirm-action">Suspend</a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
@@ -212,5 +224,44 @@
 @endsection
 @section('script')
 <script src="{{asset('back-assets/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
-
+<script>    
+    $('.popup-confirm-approve').click(function(e) {
+        e.preventDefault();
+        var actionurl = $(this).attr('href');
+        
+        Swal.fire({
+            title: 'Apa Anda yakin?',
+            text: "Sistem akan melakukan proses approval dan mengirim informasi approval ke email user",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, saya yakin',
+            cancelButtonText: 'Tidak',
+        }).then((result) => {
+            if (result.value === true) {
+                window.location = actionurl;
+            } 
+        })
+    });
+    $('.popup-confirm-reject').click(function(e) {
+        e.preventDefault();
+        var actionurl = $(this).attr('href');
+        
+        Swal.fire({
+            title: 'Apa Anda yakin?',
+            text: "Sistem akan melakukan proses reject dan mengirim informasi reject ke email user",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, saya yakin',
+            cancelButtonText: 'Tidak',
+        }).then((result) => {
+            if (result.value === true) {
+                window.location = actionurl;
+            } 
+        })
+    });
+</script>
 @endsection

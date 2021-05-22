@@ -27,6 +27,9 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Auth::routes();
+Route::get('/register-partner', 'Auth\\RegisterPartnerController@showRegistrationForm');
+Route::post('/register-partner', 'Auth\\RegisterPartnerController@register')->name('register-partner');
+Route::get('/partner-thanks', 'Auth\\RegisterPartnerController@thanks');
 
 // ============ front =====
 Route::get('/donasi/{id}', 'front\\frontController@donasi');
@@ -64,6 +67,7 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function (
             Route::post('/users/{id}/update','back\\backController@updateUser' );
             Route::get('/users/search','back\\backController@cari');
             Route::get('/users/filter','back\\backController@filter');
+            Route::get('/users/{id}/{status}', 'back\\backController@updateStatus');
             Route::get('/settings', 'back\\backController@globalSetting');
             Route::post('/updateGlobal', 'back\\backController@updateSetting');
         });   

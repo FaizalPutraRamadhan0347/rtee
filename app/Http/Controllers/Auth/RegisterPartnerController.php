@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Model\Partner;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Validation\Rule;
 
-class RegisterController extends Controller
+class RegisterPartnerController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/partner-thanks';
 
     /**
      * Create a new controller instance.
@@ -39,6 +43,26 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        return view('auth.register-partner');
+    }
+    
+    /**
+     * Show thank you page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function thanks()
+    {
+        return view('auth.partner-thanks');
     }
 
     /**
@@ -59,6 +83,10 @@ class RegisterController extends Controller
                 }),
             ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'partner_name' => ['required', 'string', 'max:120'],
+            'partner_address' => ['required', 'string', 'min:30'],
+            'partner_phone' => ['required', 'max:15'],
+            'partner_info' => ['required', 'string', 'min:30'],
         ]);
     }
 
@@ -70,13 +98,40 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'no_hp' => $data['no_hp'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => 'user',
-            'status' => 'active',
+            'role' => 'partner',
+            'status' => 'pending',
         ]);
+
+        $insertedId = $user->id;
+
+        $partner = Partner::create([
+            'users_id' => $insertedId,
+            'partner_name' => $data['partner_name'],
+            'partner_address' => $data['partner_address'],
+            'partner_phone' => $data['partner_phone'],
+            'partner_info' => $data['partner_info'],
+        ]);
+
+        return $user;
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return redirect($this->redirectPath());
     }
 }

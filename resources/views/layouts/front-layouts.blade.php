@@ -19,7 +19,9 @@
   
     <header>
       <div class="nav-bar">
-        <a href="/" class="logo">BE HUMAN</a>
+        <a href="/" class="logo">
+          <img src="{{ asset('images/logo.png') }}" alt="logo sedekah itu mudah">
+        </a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
         <ul class="menu">
@@ -36,6 +38,7 @@
           @if (!Auth::check())
           <li><a class="nav-link" href="/login">Login</a></li>
           <li><a class="nav-link" href="/register">Daftar</a></li> 
+          <li><a class="nav-link" href="/register-partner">Daftar Partner</a></li> 
           @else
           <li><a class="btn-logout" href="{{ route('logout') }}"
             onclick="event.preventDefault();

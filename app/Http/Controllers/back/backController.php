@@ -16,14 +16,22 @@ use App\GlobalSetting;
 
 class backController extends Controller
 {
+    public $user_status = [
+        'active' => 'Aktif',
+        'pending' => 'Pending',
+        'suspend' => 'Suspend',
+        'reject' => 'Reject',
+    ];
+
     public function index(){
         $program = Program::count();
         $programPublished = Program::where('isPublished', 1)->count();
         $programSelected = Program::where('isSelected', 1)->count();
-        $user = User::where('role', 0)->count();
+        $user = User::where('role', 'user')->count();
+        $partner = User::where('role', 'partner')->count();
         $category = Category::count();
     
-        return view('back.index', compact('program', 'programPublished', 'user', 'category', 'programSelected'));
+        return view('back.index', compact('program', 'programPublished', 'user', 'partner' , 'category', 'programSelected'));
     }
 
     public function categories(){
@@ -80,10 +88,11 @@ class backController extends Controller
     {
         // mengambil data dari table users
         $users = DB::table('users')->paginate(10);
+        $user_status = $this->user_status;
 
         // mengirim data users ke view users
         // $users = User::all();
-        return view('back.users' , ['users' => $users]);
+        return view('back.users' , compact('users','user_status'));
     }
 
     public function cari(Request $request)
@@ -233,4 +242,18 @@ class backController extends Controller
     //     return View('back.user')->with('data',$users);
     //     //
     // }
+
+    public function updateStatus($id, $status)
+    {
+        $user_status = array_keys($this->user_status);
+
+        if (in_array($status, $user_status)){
+            $user = User::find($id);
+            $user->update(['status' => $status]);
+
+            return redirect()->back();
+        } else {
+            return redirect()->with(['error' => 'Invalid status'])->back();
+        }
+    }
 }
