@@ -48,7 +48,8 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function (
     Route::group(['prefix' => 'admin'], function () {
         Route::group(['middleware' => ['auth']], function () {
             Route::get('/dashboard', 'back\\backController@index');
-            Route::get('/program', 'back\\backController@program');
+            Route::get('/program', 'back\\ProgramAdminController@index');
+            Route::get('/program/{id}/{status}', 'back\\ProgramAdminController@updateStatus');
             Route::get('/categories', 'back\\backController@categories');
             Route::post('/categories/create', 'back\\backController@categoriescreate');
             Route::get('/published/{id}', 'back\\backController@published');

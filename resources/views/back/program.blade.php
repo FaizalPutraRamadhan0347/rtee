@@ -9,6 +9,14 @@
     <div class="material-card card">
             <div class="card-body">
                     <h4 class="card-title">Daftar Program</h4>
+
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>	
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
                     <div class="table-responsive">
                             <table id="zero_config" class="table no-wrap user-table" role="grid" aria-describedby="zero_config_info">
                                     <thead>
@@ -17,6 +25,7 @@
                                             <th>Orang Melaporkan</th>
                                             <th>Judul Program</th>
                                             <th>Mulai Pada</th>
+                                            <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -37,8 +46,24 @@
                                             <td>{{$program->title}}</td>
                                             <td>{{$program->created_at->toDateString()}}</td>
                                             
-                                            <td><a class="btn btn-sm btn-secondary" href="/admin/detail/{{$program->id}}">Detail</a>
-                                            <a class="btn btn-sm btn-danger popup-confirm-delete" href="/admin/hapus/{{$program->id}}">Hapus Program</a>
+                                            <td>{{ $program_status[$program->status] }}</td>
+                                            
+                                            <td>
+                                                <a class="btn btn-sm btn-secondary" href="/admin/detail/{{$program->id}}">Detail</a>
+                                                <a class="btn btn-sm btn-danger popup-confirm-delete" href="/admin/hapus/{{$program->id}}">Hapus</a>
+
+                                                @if ($program->status == 'active')
+                                                    <a class="btn btn-sm btn-danger popup-confirm-action" href="/admin/program/{{$program->id}}/pause">Pause</a>
+                                                    <a class="btn btn-sm btn-danger popup-confirm-action" href="/admin/program/{{$program->id}}/stop">Stop</a>
+                                                @endif
+
+                                                @if ($program->status == 'pause')
+                                                    <a class="btn btn-sm btn-success popup-confirm-action" href="/admin/program/{{$program->id}}/active">Start</a>
+                                                @endif
+
+                                                @if ($program->status == 'stop')
+                                                    <a class="btn btn-sm btn-success popup-confirm-action" href="/admin/program/{{$program->id}}/active">Activate</a>
+                                                @endif
                                             </td>
                                             
         

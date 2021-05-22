@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Program extends Model
 {
-    protected $fillable = ['users_id', 'category_id', 'title', 'brief_explanation', 'photo', 'donation_target', 'donation_collected', 'time_is_up', 'shelter_account_number', 'description', 'isPublished', 'isSelected'];
+    protected $fillable = ['users_id', 'category_id', 'title', 'brief_explanation', 'photo', 'donation_target', 'donation_collected', 'time_is_up', 'shelter_account_number', 'description', 'isPublished', 'isSelected', 'status'];
 
     public function getFoto(){
         return asset('images/program-images/' . $this->photo);
