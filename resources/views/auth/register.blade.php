@@ -1,7 +1,7 @@
 @extends('layouts.front-layouts')
 
 @section('title')
-    Register
+    Sedekah itu Mudah - Registrasi Member
 @endsection
 
 @section('style')
@@ -33,7 +33,8 @@
             <div class="auth-box">
                 <div>
                     <div class="head-title">
-                        <h5 class="font-medium mb-3">Daftar</h5>
+                        <h5 class="font-medium mb-3">Registrasi Member</h5>
+                        <p>Yuk bergabung dengan Sedekah itu Mudah untuk nikmati kemudahan berdonasi dan akses fitur lainnya</p>
                     </div>
                     <form action="{{route('register')}}" method="post">
                         @csrf
@@ -42,7 +43,7 @@
                             <form class="form-horizontal mt-3" action="index.html">
                                 <div class="form-group row ">
                                     <div class="col-12 ">
-                                        <input class="form-control-lg form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{old('name')}}" name="name" type="text" required autofocus placeholder="Name">
+                                        <input class="form-control-lg form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{old('name')}}" name="name" type="text" required autofocus placeholder="Nama Lengkap">
                                         @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>Mohon Masukan Nama yang Valid</strong>
@@ -52,7 +53,7 @@
                                 </div>
                                 <div class="form-group row ">
                                     <div class="col-12">
-                                        <input class="form-control-lg form-control {{ $errors->has('no_hp') ? ' is-invalid' : '' }}" name="no_hp" value="{{ old('no_hp') }}" type="number" required placeholder="Nomor Handphone">
+                                        <input class="form-control-lg form-control {{ $errors->has('no_hp') ? ' is-invalid' : '' }}" name="no_hp" value="{{ old('no_hp') }}" type="number" required placeholder="Nomor Telp / Whatsapp">
                                         @if ($errors->has('no_hp'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>Mohon Masukan Nomor Handphone yang Valid</strong>
@@ -62,7 +63,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-12 ">
-                                        <input class="form-control-lg form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" type="email" required=" " placeholder="Email">
+                                        <input class="form-control-lg form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" type="email" required placeholder="Alamat Email">
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>Email ini Sudah Terdaftar</strong>
@@ -72,7 +73,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-12 ">
-                                        <input class="form-control-lg form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" type="password" required=" " placeholder="Password">
+                                        <input class="form-control-lg form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" type="password" required autocomplete="new-password" placeholder="Password">
                                         @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>Password Tidak Boleh Kurang Dari 8 Karakter</strong>
@@ -82,7 +83,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-12 ">
-                                        <input class="form-control-lg form-control" type="password" name="password_confirmation" required=" " placeholder="Confirm Password">
+                                        <input class="form-control-lg form-control" type="password" name="password_confirmation" required=" " placeholder="Konfirmasi Password">
                                     </div>
                                 </div>
                                 <div class="form-group text-center ">
