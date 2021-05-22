@@ -27,16 +27,6 @@ class backController extends Controller
         return view('back.index', compact('program', 'programPublished', 'user', 'partner' , 'category', 'programSelected'));
     }
 
-    public function categories(){
-        $categories = Category::all();
-        return view('back.categories', ['categories' => $categories]);
-    }
-
-    public function categoriescreate(Request $request){
-        Category::create($request->all());
-        return redirect()->back();
-    }
-
     public function published($id){
         $program = Program::find($id);
         if($program->isPublished == 0){
@@ -56,11 +46,6 @@ class backController extends Controller
             $program->update(['isSelected' => 0]);
         }
 
-        return redirect()->back();
-    }
-
-    public function destroy($id){
-        Category::destroy($id);
         return redirect()->back();
     }
 
