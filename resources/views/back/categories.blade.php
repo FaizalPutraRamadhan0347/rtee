@@ -56,6 +56,7 @@
                     <tr>
                         <th>NO</th>
                         <th>Nama Kategori</th>
+                        <th>Potongan Operasional</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -68,6 +69,11 @@
                     <tr>
                         <td>{{$i++}}</td>
                         <td>{{$category->category_name}}</td>
+                        <td>@if ($category->ops_percentage === null)
+                            {{ config('app.global_setting')['persen'] }} %
+                        @else
+                            {{$category->ops_percentage}} %
+                        @endif</td>
                         <td>
                             <a class="btn btn-danger popup-confirm-delete" href="/admin/delete/{{$category->id}}">Hapus</a>
                         </td>
