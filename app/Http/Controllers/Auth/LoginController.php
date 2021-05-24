@@ -39,13 +39,21 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     
-    protected function validateLogin(Request $request)
+    // protected function validateLogin(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         // $this->username() => Rule::exists('users')->where(function ($query) {
+    //         //     $query->where('status', 'active');
+    //         // }),
+    //         $this->username() => 'required|string',
+    //         'password' => 'required|string'
+    //     ]);
+    // }
+
+    public function authenticate(Request $request)
     {
-        $this->validate($request, [
-            $this->username() => Rule::exists('users')->where(function ($query) {
-                $query->where('status', 'active');
-            }),
-            'password' => 'required|string'
-        ]);
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 'active'])) {
+            return redirect();
+        }
     }
 }
