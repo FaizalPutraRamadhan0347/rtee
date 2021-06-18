@@ -3,75 +3,38 @@
     Buat Laporan Perkembangan
 @endsection
 
-<style>
-  .my-editor{
-    height: 300px;
-  }
-</style>
-
 @section('content')
-    
-    <section class="section-1">
-
-        <div class="box">
-            <div class="container">
-            <form action="/laporanperkembangan/store" method="post">
-                {{ csrf_field() }}
-            <input type="hidden" name="program_id" value="{{$program->id}}">
-            <div class="form-group label--floating">
-                <input type="text" name="title">
-                <label>Judul Laporan Perkembangan</label>
-            </div>
-
-            <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-            <label><p>Deskripsi Laporan Perkembangan</p></label>
-        <textarea name="description" class="form-control my-editor"></textarea>
-        <script>
-          var editor_config = {
-            path_absolute : "/",
-            selector: "textarea.my-editor",
-            plugins: [
-              "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-              "searchreplace wordcount visualblocks visualchars fullscreen",
-              "insertdatetime media nonbreaking save table contextmenu directionality",
-              "emoticons template paste textcolor colorpicker textpattern"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-            relative_urls: false,
-            file_browser_callback : function(field_name, url, type, win) {
-              var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-              var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
-        
-              var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
-              if (type == 'image') {
-                cmsURL = cmsURL + "&type=Images";
-              } else {
-                cmsURL = cmsURL + "&type=Files";
-              }
-        
-              tinyMCE.activeEditor.windowManager.open({
-                file : cmsURL,
-                title : 'Filemanager',
-                width : x * 0.8,
-                height : y * 0.8,
-                resizable : "yes",
-                close_previous : "no"
-              });
-            }
-          };
-        
-          tinymce.init(editor_config);
-        </script>
-
+<form action="/laporanperkembangan/store" method="post">
+  <div class="box">
+    <div class="box-header">
+      <h3>Tambah Laporan Perkembangan</h3>
+    </div>
+    <div class="box-body">
+        {{ csrf_field() }}
+        <input type="hidden" name="program_id" value="{{$program->id}}">
+        <div class="form-group label--floating">
+            <input type="text" name="title">
+            <label>Judul Laporan Perkembangan</label>
         </div>
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Buat</button>
-            </div>
+        <label><p>Deskripsi</p></label>
+        <textarea name="description" class="form-control" id="myeditor"></textarea>
+    </div>
+    <div class="box-footer">
+        <button type="submit" class="btn btn-primary">Buat</button>
+    </div>
+  </div>
+</form>
+@endsection
 
-            </form>
-            
-        </div>
-
-    </section>
-
+@section('script')  
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+<script src="{{asset('back-assets/assets/libs/tinymce/tinymce.min.js')}}"></script>
+<script  type="text/javascript">        
+tinymce.init({
+  selector : 'textarea#myeditor',
+  plugins: 'quickbars table image link lists media autoresize help',
+  toolbar: 'undo redo | formatselect | bold italic | alignleft aligncentre alignright alignjustify | indent outdent | bullist numlist',
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+});
+</script>
 @endsection
