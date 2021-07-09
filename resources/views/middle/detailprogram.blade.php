@@ -241,7 +241,7 @@ ul { list-style-type: none; }
                           </style>
                         </thead>
                         <tbody>
-                          @foreach ($program->donatur as $donatur)
+                          @foreach($program->donatur as $donatur)
                           <tr>
                             <td>{{$donatur->nama_donatur}}</td>
                             <td>{{$donatur->nominal_donasi}}</td>
@@ -254,6 +254,7 @@ ul { list-style-type: none; }
                           
                           </tr>
                           @endforeach
+
                           <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
                           <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
                           <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
@@ -283,24 +284,16 @@ ul { list-style-type: none; }
                       </table>
 
                     </div>
-                    <div class="pagination-wrapper clearfix">
-                      <ul class="pagination float--right">
-                        <li class="pagination-item"><a class="active">1</a></li>
-                        <li class="pagination-item"> <a>2</a></li>
-                        <li class="pagination-item"> <a>3</a></li>
-                        <li class="pagination-item"> <a>Next</a></li>
-                        
-
-                      </ul>
-                    </div>
                     
                   </div>
-
+                  {!! $donatur->simplePaginate(20) !!}       
             </div>
 
 
-
+           
             </div>
+            
+    
     </section>
 
     @section('script')
@@ -333,7 +326,9 @@ ul { list-style-type: none; }
 	var accordion = new Accordion($('#accordion'), false);
 });
 
+
         </script>
+        
     @endsection
 
 @endsection
