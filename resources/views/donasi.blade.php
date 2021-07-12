@@ -33,7 +33,7 @@
         <span>{{$program->brief_explanation}}</span>
       </div>
         <div class="p-3 fyi">
-          @if ($program->donation_collected >= $program->donation_target)
+          @if ($program->donatur->sum('nominal_donasi') >= $program->donation_target)
            <div class="badge badge-success">Terdanai <i class="fa fa-check"></i></div>
           @endif
           <p>Dibuat Oleh : {{$program->user->name}}</p>
@@ -50,14 +50,13 @@
           @foreach ($program->donatur as $donatur)
           <tr>
             <th style="font-weight: 200;">{{$donatur->nama_donatur}}</th>
-            <th>{{$donatur->nominal_donasi}}</th>
+            <th>@rupiah($donatur->nominal_donasi)</th>
           </tr>
           @endforeach
         </tbody>
       </table>
     </div>
   </div>
-{{-- ========== --}}
 
   <div class="row pb-4">
     <div class="col-md-7 col-12">

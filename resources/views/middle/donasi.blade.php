@@ -26,7 +26,7 @@
                     <div class="container">
                         <p>{{$show->program->title}}</p>
                         <span>ID Transaksi : <strong>{{$show->id_transaksi}}</strong></span><br>
-                        <span>Nominal Donasi : <strong>{{$show->nominal_donasi}}</strong></span>
+                        <span>Nominal Donasi : <strong>@rupiah($show->nominal_donasi)</strong></span>
                         <form class="mt-3" action="/donasi/konfir/{{$show->id}}" method="post" enctype="multipart/form-data">
                             <span>Tambahkan Bukti Pembayaran</span>
                             @csrf
@@ -54,7 +54,7 @@
                 <div class="container">
                     <p>{{$showDonasi->program->title}}</p>
                     <span>ID Transaksi : <strong>{{$showDonasi->id}}</strong></span><br>
-                    <span>Nominal Donasi : <strong>{{$showDonasi->nominal_donasi}}</strong></span>
+                    <span>Nominal Donasi : <strong>@rupiah($showDonasi->nominal_donasi)</strong></span>
                 </div>
             </div>
         </div>

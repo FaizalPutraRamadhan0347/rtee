@@ -134,11 +134,11 @@ ul { list-style-type: none; }
                             </tr>
                             <tr>
                                 <td>Target Donasi</td>
-                                <td>{{$program->donation_target}}</td>
+                                <td>@rupiah($program->donation_target)</td>
                             </tr>
                             <tr>
                                 <td>Donasi Terkumpul</td>
-                                <td>{{$program->donation_collected}}</td>
+                                <td>@rupiah($program->donatur->sum('nominal_donasi'))</td>
                             </tr>
                             <tr>
                                 <td>Nomor Rekening Penampungan</td>
@@ -222,7 +222,7 @@ ul { list-style-type: none; }
                           @foreach($donaturs as $donatur)
                           <tr>
                             <td>{{$donatur->nama_donatur}}</td>
-                            <td>{{$donatur->nominal_donasi}}</td>
+                            <td>@rupiah($donatur->nominal_donasi)</td>
 
                             @if ($donatur->bukti_pembayaran == '')
                                 <td><p class="badge badge-green">Belum Konfirmasi</p></td>
