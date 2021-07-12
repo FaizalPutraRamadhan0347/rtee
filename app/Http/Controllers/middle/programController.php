@@ -62,12 +62,12 @@ class programController extends Controller
     public function detailprogram($id){
         $program = Program::find($id);
         $program->load(['donatur'=> function($q){
-            $q->orderBy('id')->simplePaginate(20);
+            $q->orderBy('id')->paginate(19);
         }]);
         $no_rek = \App\GlobalSetting::find(1);
         $devs = Development::all()->where('program_id', $program->id);
         $donatur = DonationConfirmation::where('program_id', $id)->count();
-
+        
         return view('middle.detailprogram', compact('program', 'no_rek','devs', 'donatur'));
     }
     
@@ -86,16 +86,13 @@ class programController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(request $id)
+    public function index()
     {   
-        $program = Program::find($id);
-        $program->load(['donatur'=> function($q){
-            $q->orderBy('id')->simplePaginate(20);
-        }]);
+        
         $info = Program::where('users_id', Auth::user()->id)->count();
         $programs = Program::where('users_id', Auth::user()->id)->orderBy('isPublished', 'DESC')->get();
         // if time is up, this destroy
-       return view('middle.program', compact('programs', 'info', 'program'));
+       return view('middle.program', compact('programs', 'info'));
     }
 
     /**

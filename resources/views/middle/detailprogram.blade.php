@@ -213,6 +213,7 @@ ul { list-style-type: none; }
                             <th>Nominal Donasi</th>
                             <th>Bukti Pembayaran</th>
                           </tr>
+                          
                           <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
                           <style type="text/css">
                             a.fancybox img {
@@ -282,20 +283,31 @@ ul { list-style-type: none; }
                         @endif
 
                       </table>
-
+                        
                     </div>
                     
                   </div>
-                  {!! $donatur->simplePaginate(20) !!}       
+                  <div class="d-flex justify-content-end">
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+                  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+                  <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+                  <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+                  <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet"/>
+                  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+                  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" />
+                  
+                  {!! $donatur->paginate(19) !!} 
+                  </div>
             </div>
 
 
-           
+
             </div>
-            
-    
     </section>
-
+    
     @section('script')
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script>
