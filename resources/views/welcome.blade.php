@@ -129,7 +129,9 @@
                                             <span>Terkumpul</span><p>@if ($newProgram->donation_collected == 0)
                                                 0
                                             @else
+                                            
                                             {{$newProgram->donation_collected}}
+                                            
                                             @endif</p>
                                             <span>Target</span><p>{{$newProgram->donation_target}}</p>
                                             </div>

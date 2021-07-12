@@ -9,7 +9,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\programController;
 Route::get('/', 'front\\frontController@index');
 Route::get('/testemail', 'front\\frontController@testemail');
 

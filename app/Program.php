@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Program extends Model
@@ -19,7 +19,7 @@ class Program extends Model
 
     public function donatur()
     {
-        return $this->hasMany('App\DonationConfirmation')->orderBy('isVerified');
+        return $this->hasMany('App\DonationConfirmation')->orderBy('id', 'desc');
     }
 
     public function reports()

@@ -4,6 +4,7 @@
     Daftar Program
 @endsection  
 
+@section('style')
 <style>
 * {
   margin: 0;
@@ -108,6 +109,7 @@ ul { list-style-type: none; }
 }
 
 </style>
+@endsection  
 
 @section('content')    
     <section class="section-1">
@@ -213,9 +215,11 @@ ul { list-style-type: none; }
                             <th>Nominal Donasi</th>
                             <th>Bukti Pembayaran</th>
                           </tr>
+                          
+                          
                         </thead>
                         <tbody>
-                          @foreach ($program->donatur as $donatur)
+                          @foreach($donaturs as $donatur)
                           <tr>
                             <td>{{$donatur->nama_donatur}}</td>
                             <td>{{$donatur->nominal_donasi}}</td>
@@ -223,38 +227,39 @@ ul { list-style-type: none; }
                             @if ($donatur->bukti_pembayaran == '')
                                 <td><p class="badge badge-green">Belum Konfirmasi</p></td>
                             @else    
-                                <td> <img class="img-bukti" src="{{$donatur->getFoto()}}"> </td>
+                                <td>
+                                  <a href="javascript:void(0);" data-fancybox="bukti" data-src="{{$donatur->getFoto()}}">
+                                    <img style="width: auto; max-height: 50px;" src="{{$donatur->getFoto()}}">
+                                  </a>
+                                </td>
                             @endif
                           
                           </tr>
                           @endforeach
+
                         </tbody>
                         @endif
 
                       </table>
-
+                        
                     </div>
-                    <div class="pagination-wrapper clearfix">
-                      <ul class="pagination float--right">
-                        <li class="pagination-item"><a class="active">1</a></li>
-                        <li class="pagination-item"> <a>2</a></li>
-                        <li class="pagination-item"> <a>3</a></li>
-                        <li class="pagination-item"> <a>Next</a></li>
-                      </ul>
-                    </div>
+                    
                   </div>
-
+                  <div class="d-flex justify-content-end">
+                    {{ $donaturs->links() }} 
+                  </div>
             </div>
 
 
 
             </div>
     </section>
+@endsection
 
-    @section('script')
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script>
-            $(function() {
+@section('script')
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+$(function() {
 	var Accordion = function(el, multiple) {
 		this.el = el || {};
 		this.multiple = multiple || false;
@@ -280,9 +285,5 @@ ul { list-style-type: none; }
 
 	var accordion = new Accordion($('#accordion'), false);
 });
-
-        </script>
-    @endsection
-
+</script>            
 @endsection
-
