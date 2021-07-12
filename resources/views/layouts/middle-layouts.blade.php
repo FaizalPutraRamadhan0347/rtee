@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css">
   <link rel="stylesheet" href="{{asset('middle-assets/css/themes/comfort.min.css')}}" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
   @yield('style')
 </head>
@@ -78,6 +79,7 @@
   <script src="{{asset('middle-assets/js/main.min.js')}}"></script>
   <script src="{{asset('middle-assets/js/chartDemoWidget.min.js')}}"></script>
   <script src="{{asset('back-assets/assets/libs/tinymce/tinymce.min.js')}}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
   @yield('script')
   @include('sweetalert::alert')
 

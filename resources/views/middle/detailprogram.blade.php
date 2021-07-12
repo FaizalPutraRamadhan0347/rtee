@@ -109,7 +109,6 @@ ul { list-style-type: none; }
 }
 
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
 @endsection  
 
 @section('content')    
@@ -247,8 +246,7 @@ ul { list-style-type: none; }
                     
                   </div>
                   <div class="d-flex justify-content-end">
-                  
-                  {!! $donaturs->links() !!} 
+                    {{ $donaturs->links() }} 
                   </div>
             </div>
 
@@ -261,7 +259,7 @@ ul { list-style-type: none; }
 @section('script')
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
-            $(function() {
+$(function() {
 	var Accordion = function(el, multiple) {
 		this.el = el || {};
 		this.multiple = multiple || false;
@@ -287,29 +285,5 @@ ul { list-style-type: none; }
 
 	var accordion = new Accordion($('#accordion'), false);
 });
-
-
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
-<script type="text/javascript">
-$(function($){
-    var addToAll = false;
-    var gallery = true;
-    var titlePosition = 'inside';
-    $(addToAll ? 'img' : 'img.fancybox').each(function(){
-      var $this = $(this);
-      var title = $this.attr('title');
-      var src = $this.attr('data-big') || $this.attr('src');
-      var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
-      $this.wrap(a);
-    });
-if (gallery)
-  $('a.fancybox').attr('rel', 'fancyboxgallery');
-  $('a.fancybox').fancybox({
-  titlePosition: titlePosition
-});
-});
-$.noConflict();
-</script>
-                  
+</script>            
 @endsection
