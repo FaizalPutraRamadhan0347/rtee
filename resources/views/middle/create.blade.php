@@ -78,13 +78,7 @@ input, select, textarea{
                 </div>
              </span>
         @endif
-        <div class="form-group">
-                    <label for="ops_percentage" class="control-label">Potongan Operasional</label>
-                    <div class="input-group mb-3">
-                        <input type="text" name="ops_percentage" class="form-control" id="ops_percentage" value="{{ $category->ops_percentage }}">
-                        <div class="input-group-append">
-                            <span class="input-group-text">%</span>
-                        </div>
+      
 
         <div class="form-group">
             <label for="time_is_up">Donasi Berakhir</label>
