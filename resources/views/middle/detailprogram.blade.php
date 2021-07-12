@@ -4,6 +4,7 @@
     Daftar Program
 @endsection  
 
+@section('style')
 <style>
 * {
   margin: 0;
@@ -108,6 +109,8 @@ ul { list-style-type: none; }
 }
 
 </style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+@endsection  
 
 @section('content')    
     <section class="section-1">
@@ -214,35 +217,10 @@ ul { list-style-type: none; }
                             <th>Bukti Pembayaran</th>
                           </tr>
                           
-                          <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
-                          <style type="text/css">
-                            a.fancybox img {
-                            border: none;
-                            box-shadow: 0 1px 7px rgba(0,0,0,0.6);
-                            -o-transform: scale(1,1); 
-                            -ms-transform: scale(1,1); 
-                            -moz-transform: scale(1,1); 
-                            -webkit-transform: scale(1,1); 
-                            transform: scale(1,1); 
-                            -o-transition: all 0.2s ease-in-out; 
-                            -ms-transition: all 0.2s ease-in-out; 
-                            -moz-transition: all 0.2s ease-in-out; 
-                            -webkit-transition: all 0.2s ease-in-out; 
-                            transition: all 0.2s ease-in-out;
-                            } 
-                            a.fancybox:hover img {
-                            position: relative; 
-                            z-index: 999; 
-                            -o-transform: scale(1.15,1.15); 
-                            -ms-transform: scale(1.15,1.15); 
-                            -moz-transform: scale(1.15,1.15); 
-                            -webkit-transform: scale(1.15,1.15); 
-                            transform: scale(1.15,1.15);
-                            }
-                          </style>
+                          
                         </thead>
                         <tbody>
-                          @foreach($program->donatur as $donatur)
+                          @foreach($donaturs as $donatur)
                           <tr>
                             <td>{{$donatur->nama_donatur}}</td>
                             <td>{{$donatur->nominal_donasi}}</td>
@@ -250,35 +228,16 @@ ul { list-style-type: none; }
                             @if ($donatur->bukti_pembayaran == '')
                                 <td><p class="badge badge-green">Belum Konfirmasi</p></td>
                             @else    
-                                <td> <img class="fancybox" src="{{$donatur->getFoto()}}"> </td>
+                                <td>
+                                  <a href="javascript:void(0);" data-fancybox="bukti" data-src="{{$donatur->getFoto()}}">
+                                    <img style="width: auto; max-height: 50px;" src="{{$donatur->getFoto()}}">
+                                  </a>
+                                </td>
                             @endif
                           
                           </tr>
                           @endforeach
 
-                          <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-                          <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-                          <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
-                          <script type="text/javascript">
-                              $(function($){
-                                var addToAll = false;
-                                var gallery = true;
-                                var titlePosition = 'inside';
-                                $(addToAll ? 'img' : 'img.fancybox').each(function(){
-                                var $this = $(this);
-                                var title = $this.attr('title');
-                                var src = $this.attr('data-big') || $this.attr('src');
-                                var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
-                                $this.wrap(a);
-                              });
-                          if (gallery)
-                            $('a.fancybox').attr('rel', 'fancyboxgallery');
-                            $('a.fancybox').fancybox({
-                            titlePosition: titlePosition
-                          });
-                        });
-                        $.noConflict();
-                        </script>
                         </tbody>
                         @endif
 
@@ -288,18 +247,8 @@ ul { list-style-type: none; }
                     
                   </div>
                   <div class="d-flex justify-content-end">
-                  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-                  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-                  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-                  <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
-                  <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
-                  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-                  <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet"/>
-                  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-                  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" />
                   
-                  {!! $donatur->paginate(19) !!} 
+                  {!! $donaturs->links() !!} 
                   </div>
             </div>
 
@@ -307,10 +256,11 @@ ul { list-style-type: none; }
 
             </div>
     </section>
-    
-    @section('script')
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script>
+@endsection
+
+@section('script')
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
             $(function() {
 	var Accordion = function(el, multiple) {
 		this.el = el || {};
@@ -339,9 +289,27 @@ ul { list-style-type: none; }
 });
 
 
-        </script>
-        
-    @endsection
-
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+<script type="text/javascript">
+$(function($){
+    var addToAll = false;
+    var gallery = true;
+    var titlePosition = 'inside';
+    $(addToAll ? 'img' : 'img.fancybox').each(function(){
+      var $this = $(this);
+      var title = $this.attr('title');
+      var src = $this.attr('data-big') || $this.attr('src');
+      var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
+      $this.wrap(a);
+    });
+if (gallery)
+  $('a.fancybox').attr('rel', 'fancyboxgallery');
+  $('a.fancybox').fancybox({
+  titlePosition: titlePosition
+});
+});
+$.noConflict();
+</script>
+                  
 @endsection
-

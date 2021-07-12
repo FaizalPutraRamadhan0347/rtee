@@ -61,14 +61,13 @@ class programController extends Controller
 
     public function detailprogram($id){
         $program = Program::find($id);
-        $program->load(['donatur'=> function($q){
-            $q->orderBy('id')->paginate(19);
-        }]);
+        $donaturs = $program->donatur()->paginate(10);
+
         $no_rek = \App\GlobalSetting::find(1);
         $devs = Development::all()->where('program_id', $program->id);
         $donatur = DonationConfirmation::where('program_id', $id)->count();
         
-        return view('middle.detailprogram', compact('program', 'no_rek','devs', 'donatur'));
+        return view('middle.detailprogram', compact('program', 'no_rek','devs', 'donatur', 'donaturs'));
     }
     
 

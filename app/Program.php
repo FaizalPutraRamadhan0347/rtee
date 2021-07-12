@@ -19,7 +19,7 @@ class Program extends Model
 
     public function donatur()
     {
-        return $this->hasMany('App\DonationConfirmation')->orderBy('isVerified');
+        return $this->hasMany('App\DonationConfirmation')->orderBy('id', 'desc');
     }
 
     public function reports()
