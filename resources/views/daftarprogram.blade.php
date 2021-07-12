@@ -49,7 +49,7 @@
                             <img src="{{$program->getFoto()}}" alt="Program Images">
                             
                             <div class="container mt-3">
-                                    @if ($program->donation_collected >= $program->donation_target)
+                                    @if ($program->donatur->sum('nominal_donasi') >= $program->donation_target)
                                     <div class="badge badge-success">Terdanai <i class="fa fa-check"></i></div>
                             @endif
                                 <p class="title">{{$program->title}}</p>
@@ -68,13 +68,8 @@
 
                                 <div class="dana">
                                     <div class="container mt-2">
-                                    <span>Terkumpul</span><p class="collected">
-                                    @if($program->donation_collected == 0)
-                                        0
-                                    @else
-                                    {{$program->donation_collected}}
-                                    @endif</p>
-                                    <span>Target</span><p>{{$program->donation_target}}</p>
+                                    <span>Terkumpul</span><p class="collected">@rupiah($program->donatur->sum('nominal_donasi'))</p>
+                                    <span>Target</span><p>@rupiah($program->donation_target)</p>
                                     </div>
                                 </div>
                             </div>

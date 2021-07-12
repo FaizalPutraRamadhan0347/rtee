@@ -53,7 +53,7 @@
                 <a class="btn btn-danger waves-effect waves-light mt-2 text-white"href="/admin/selected/{{$program->id}}">Batal Jadikan Program Pilihan</a>
                 @endif
             </div>
-            @if ($program->donation_collected >= $program->donation_target)
+            @if ($program->donatur->sum('nominal_donasi') >= $program->donation_target)
                 <span class="alert alert-success float-left" >Terdanai <i class="ti-check"></i></span>
             @endif
         </div>

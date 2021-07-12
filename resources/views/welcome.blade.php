@@ -55,7 +55,7 @@
                             <img src="{{$program->getFoto()}}" alt="Program Image">
                             
                             <div class="container mt-3">
-                                    @if ($program->donation_collected >= $program->donation_target)
+                                    @if ($program->donatur->sum('nominal_donasi') >= $program->donation_target)
                                         <div class="badge badge-success">Terdanai <i class="fa fa-check"></i></div>
                                     @endif
                                     <p class="title">{{$program->title}}</p>
@@ -73,8 +73,8 @@
 
                                     <div class="dana">
                                         <div class="container">
-                                        <span>Terkumpul</span><p class="collected">{{$program->donation_collected}}</p>
-                                        <span>Target</span><p>{{$program->donation_target}}</p>
+                                        <span>Terkumpul</span><p class="collected">@rupiah($program->donatur->sum('nominal_donasi'))</p>
+                                        <span>Target</span><p>@rupiah($program->donation_target)</p>
                                         </div>
                                     </div>
                                     </div>
@@ -108,7 +108,7 @@
                                 <img src="{{$newProgram->getFoto()}}" alt="Program Image">
     
                                 <div class="container mt-3">
-                                    @if ($newProgram->donation_collected >= $newProgram->donation_target)
+                                    @if ($newProgram->donatur->sum('nominal_donasi') >= $newProgram->donation_target)
                                         <div class="badge badge-success">Terdanai <i class="fa fa-check"></i></div>
                                     @endif
                                         <p class="title">{{$newProgram->title}}</p><span>
@@ -126,14 +126,8 @@
     
                                         <div class="dana">
                                             <div class="container">
-                                            <span>Terkumpul</span><p>@if ($newProgram->donation_collected == 0)
-                                                0
-                                            @else
-                                            
-                                            {{$newProgram->donation_collected}}
-                                            
-                                            @endif</p>
-                                            <span>Target</span><p>{{$newProgram->donation_target}}</p>
+                                            <span>Terkumpul</span><p>@rupiah($newProgram->donatur->sum('nominal_donasi'))</p>
+                                            <span>Target</span><p>@rupiah($newProgram->donation_target)</p>
                                             </div>
                                         </div>
                                         </div>

@@ -46,7 +46,7 @@
             @else
             <span class="badge badge-red">Dalam Proses</span>             
             @endif
-            @if ($program->donation_collected >= $program->donation_target)
+            @if ($program->donatur->sum('nominal_donasi') >= $program->donation_target)
                 <span class="badge badge-green">Terdanai <i class="la la-check"></i></span>
             @endif
             <h4>{{$program->title}}</h4><br>
