@@ -32,12 +32,12 @@
                                     <tbody>
                                         @foreach ($programs as $program)
                                         <tr role="row" class="odd">
-                                            <td>@if ($program->isSelected == 1)
+                                            <td>@if ($program->isSelected == 2)
                                                 <p class="badge badge-success">Program Pilihan</p>
                                             @else
                                                 <p class="badge badge-secondary">Program Biasa</p>
                                             @endif
-                                            @if ($program->isPublished)
+                                            @if ($program->status == 'active')
                                                 <p class="badge badge-success">Dipublish</p>
                                             @else
                                                 <p class="badge badge-danger">Belum Dipublish</p>
@@ -50,20 +50,33 @@
                                             
                                             <td>
                                                 <a class="btn btn-sm btn-secondary" href="/admin/detail/{{$program->id}}">Detail</a>
+
+                                                @if ($program->status == 'pending')
+                                                    <a class="btn btn-sm btn-success " href="/admin/published/{{$program->id}}">Publish</a>
+                                                @endif
+                                                
                                                 <a class="btn btn-sm btn-danger popup-confirm-delete" href="/admin/hapus/{{$program->id}}">Hapus</a>
+                                                
 
                                                 @if ($program->status == 'active')
                                                     <a class="btn btn-sm btn-danger popup-confirm-action" href="/admin/program/{{$program->id}}/pause">Pause</a>
                                                     <a class="btn btn-sm btn-danger popup-confirm-action" href="/admin/program/{{$program->id}}/stop">Stop</a>
+                                                    
+                                                    
                                                 @endif
 
                                                 @if ($program->status == 'pause')
                                                     <a class="btn btn-sm btn-success popup-confirm-action" href="/admin/program/{{$program->id}}/active">Start</a>
+                                                   
                                                 @endif
 
                                                 @if ($program->status == 'stop')
                                                     <a class="btn btn-sm btn-success popup-confirm-action" href="/admin/program/{{$program->id}}/active">Activate</a>
                                                 @endif
+
+                                               
+
+                                
                                             </td>
                                             
         

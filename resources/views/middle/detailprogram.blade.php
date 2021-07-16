@@ -162,7 +162,7 @@ ul { list-style-type: none; }
                   </div>
 
                   <div class="tab__content" id="tab1-2" style="display: none;">
-                    @if ($program->isPublished == 1)
+                    @if ($program->status == 'active')
                     <a href="/laporanperkembangan/create/{{$program->id}}">Buat Laporan Baru</a>                    
                     @else
                     <span class="alert alert--warning">Tidak bisa buat laporan perkembangan, Program belum di publish Admin</span>

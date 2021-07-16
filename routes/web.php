@@ -57,6 +57,7 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function (
             Route::get('/selected/{id}', 'back\\backController@selected');
             Route::get('/detail/{id}', 'back\\backController@detail');
             Route::get('/hapus/{id}', 'back\\backController@hapusProgram');
+            
 
             // Kelola Kategori
             Route::get('/categories', 'back\\CategoryAdminController@index');

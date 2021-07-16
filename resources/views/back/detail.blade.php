@@ -21,7 +21,7 @@
                     <span style="border-right: 1px solid #CBD2DA;" class="text-muted pr-4">Berakhir Pada : {{ $program->time_is_up }}</span>
                 </div>
                 <div class="ml-3">
-                    @if ($program->isPublished == 1)    
+                    @if ($program->status == 'active')    
                         <span class="badge badge-success">Published <i class="ti-check"></i></span>
                     @else
                         <span class="badge badge-danger">Belum Dipublish</span>
@@ -42,11 +42,11 @@
             <h3 class="mt-3 text-uppercase">{{$program->title}}</h3>
             <p class="mt-3 font-light">{{$program->brief_explanation}}</p>
             <div class="float-right">
-                @if ($program->isPublished == 0)
+                <!-- @if ($program->isPublished == 'active')
                     <a class="btn btn-success waves-effect waves-light mt-2 text-white" href="/admin/published/{{$program->id}}">Publikasi</a>
                 @else
                     <a class="btn btn-danger waves-effect waves-light mt-2 text-white" href="/admin/published/{{$program->id}}">Batal Publikasi</a>
-                @endif
+                @endif -->
                 @if ($program->isSelected == 0)
                 <a class="btn btn-primary waves-effect waves-light mt-2 text-white" href="/admin/selected/{{$program->id}}">Jadikan Program Pilihan</a>
                 @else

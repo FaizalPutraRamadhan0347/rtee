@@ -41,7 +41,7 @@
             <img src="{{$program->getFoto()}}">
 
             <div class="container mt-3">
-            @if ($program->isPublished == 1)
+            @if ($program->status == 'active')
             <span class="badge badge-green">Published</span> 
             @else
             <span class="badge badge-red">Dalam Proses</span>             
